@@ -1,20 +1,20 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-// Boiler plate sequelize model construction ex. taken from unfinished Character.js file
-// TODO: remove instance of character with the current files name
-class Character extends Model {}
 
-Character.init({
-        // example data value
-        // TODO: use the correct ERD in the resources tab to fill out model data structure
-    character_name: {
+class Group extends Model {}
+
+Group.init({
+    groupName: {
          type: DataTypes.STRING,
          allowNull:false,
-         unique: true
+         unique: true, 
+         validate: {
+            isAlphanumeric: true
+         }
     }
 },{
     sequelize
 });
 
 // export character
-module.exports= Character
+module.exports= Group
