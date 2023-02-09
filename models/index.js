@@ -2,7 +2,6 @@
 const Achievement = require("./tavern/Achievement");
 const Comment = require("./tavern/Comment");
 const Group = require("./tavern/Group");
-const GroupTag = require("./tavern/GroupTag");
 const User = require("./tavern/User");
 
 //Game-side Models
@@ -28,26 +27,27 @@ Character.belongsTo(User, {onDelete:"CASCADE"})
 User.hasMany(Character);
 
 // User associations with groups...can change to group hasmany users if we want users to only be able to join a single group.
-Group.belongsToMany(User, {through: GroupTag});
-User.belongsToMany(Group, {through: GroupTag});
+Group.belongsToMany(User, {through: "GroupTag"});
+User.belongsToMany(Group, {through: "GroupTag"});
 
 //Item and inventory associations
-Character.belongsTo(Inventory);
+Character.hasOne(Inventory);
 Inventory.belongsTo(Character, {onDelete: "CASCADE"});
-Enemy.belongsTo(Inventory);
+Enemy.hasOne(Inventory);
 Inventory.belongsTo(Enemy, {onDelete: "CASCADE"});
-Inventory.hasMany(Item);
-Item.belongsTo(Inventory);
+Item.belongsToMany(Inventory, {through: "InventoryItem"});
+Inventory.hasMany(Item, {through: "InventoryItem"});
+
 
 //Shop and items associations
 Item.belongsToMany(Shop, {through: ShopItem});
-Shop.belongsToMany(Item, {through: ShopItem});
+Shop.hasMany(Item, {through: ShopItem});
 
 //Character and spell associations
-Character.belongsTo(Spellbook);
+Character.hasOne(Spellbook);
 Spellbook.belongsTo(Character, {onDelete: "CASCADE"});
-Spell.belongsToMany(Spellbook, {through: SpellbookSpell});
-Spellbook.belongsToMany(Spell, {through: SpellbookSpell});
+Spell.belongsToMany(Spellbook, {through: "SpellbookSpell"});
+Spellbook.hasMany(Spell, {through: "SpellbookSpell"});
 
 //Spell and forge association
 //Might need to add a inventory like table for keywords list
@@ -55,10 +55,10 @@ Spell.hasMany(Forge);
 Forge.belongsTo(Spell);
 
 //Enemy mob and story assocations
-Story.belongsTo(Mob);
+Story.hasOne(Mob);
 Mob.belongsTo(Story);
-Mob.belongsToMany(Enemy, {through: EnemyMob});
-Enemy.belongsToMany(Mob, {through: EnemyMob});
+Mob.hasMany(Enemy, {through: "EnemyMob"});
+Enemy.belongsToMany(Mob, {through: "EnemyMob"});
 
 
 // TODO export all updated (associations added) models
