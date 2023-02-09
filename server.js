@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // TODO Requiring our models for syncing
-const {} = require('./models');
+const {User, Achievement, Comment, Group} = require('./models');
 
 // Sets up sessions cookies
 const sess = {
@@ -48,7 +48,7 @@ app.get("/sessions",(req,res)=>{
 })
 
 // syncs our data base
-sequelize.sync({ force: false }).then(function() {
+sequelize.sync({ force: true }).then(function() {
     app.listen(PORT, function() {
     console.log('App listening on PORT ' + PORT);
     });
