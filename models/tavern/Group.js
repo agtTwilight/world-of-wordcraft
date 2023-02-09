@@ -4,7 +4,7 @@ const sequelize = require('../config/connection');
 class Group extends Model {}
 
 Group.init({
-    groupName: {
+    group_name: {
          type: DataTypes.STRING,
          allowNull:false,
          unique: true, 

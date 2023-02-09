@@ -16,14 +16,14 @@ GroupTag.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model:"user",
+        model:"User",
         key:"id"
       }
     },
     group_id: {
       type: DataTypes.INTEGER,
       references: {
-        model:"group",
+        model:"Group",
         key:"id"
       }
     }
