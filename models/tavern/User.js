@@ -1,20 +1,34 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-// Boiler plate sequelize model construction ex. taken from unfinished Character.js file
-// TODO: remove instance of character with the current files name
-class Character extends Model {}
+const bcrypt = require("bcrypt")
 
-Character.init({
-        // example data value
-        // TODO: use the correct ERD in the resources tab to fill out model data structure
-    character_name: {
+class User extends Model {}
+
+User.init({
+    // add properites here, ex:
+    username: {
          type: DataTypes.STRING,
          allowNull:false,
-         unique: true
+         unique:true,
+         validate:{
+            isAlphanumeric: true
+         }
+    },
+    password:{
+        type:DataTypes.STRING,
+        allowNull:false,
+        validate:{
+            len:[8]
+        }
     }
 },{
-    sequelize
+    sequelize,
+    hooks:{
+        beforeCreate:userObj=>{
+            userObj.password = bcrypt.hashSync(userObj.password,4);
+            return userObj;
+        }
+    }
 });
 
-// export character
-module.exports= Character
+module.exports=User
