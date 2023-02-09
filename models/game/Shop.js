@@ -2,18 +2,22 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../config/connection');
 // Boiler plate sequelize model construction ex. taken from unfinished Character.js file
 // TODO: remove instance of character with the current files name
-class Forge extends Model {}
+class Shop extends Model {}
 
-Forge.init({
+Shop.init({
         // example data value
         // TODO: use the correct ERD in the resources tab to fill out model data structure
-    keyword: {
+    shop_name: {
         type: DataTypes.STRING,
         allowNull:false,
         unique: true
     },
-    magic_type: {
+    greeting: {
         type: DataTypes.STRING,
+        allowNull:false,
+    },
+    bargin_rate: {
+        type: DataTypes.INTEGER,
         allowNull:false,
     }
 },{
@@ -21,5 +25,4 @@ Forge.init({
 });
 
 // export character
-// TODO Update the export
-module.exports = Forge
+module.exports = Shop
