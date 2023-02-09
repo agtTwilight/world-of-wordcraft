@@ -17,4 +17,5 @@ Character.init({
 });
 
 // export character
+// TODO Update the export
 module.exports= Character
