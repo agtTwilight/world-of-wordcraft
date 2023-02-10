@@ -14,7 +14,6 @@ const itemData = [
         cost: 10,
         quantity: 10,
         is_equipped: false,
-        inventory_id:1
     },
     {
         item_name: "Potion of Resistance",
@@ -27,7 +26,6 @@ const itemData = [
         cost: 15,
         quantity: 5,
         is_equipped: false,
-        inventory_id:1
     },
 ];
 

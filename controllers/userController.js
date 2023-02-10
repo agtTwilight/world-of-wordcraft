@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {User, Achievement, Comment, Character, Inventory, Item} = require('../models');
+const {User, Achievement, Comment, Character, Inventory, Item, Spellbook, Spell} = require('../models');
 const bcrypt = require("bcrypt");
 
 // display all users
@@ -22,7 +22,7 @@ router.get("/logout", (req, res) => {
 // get a single user, their achievements, and those achievement comments
 router.get("/:id", (req, res) => {
         User.findByPk(req.params.id, {
-                include: [{model:Achievement, include:[Comment]},{model:Character, include:[{model: Inventory, include:[Item]}]}]
+                include: [{model:Achievement, include:[Comment]},{model:Character, include:[{model: Inventory, include:[Item]}, {model:Spellbook, include:[Spell]}]}]
         }).then(userData => {
                 res.json(userData)
         }).catch(err => {

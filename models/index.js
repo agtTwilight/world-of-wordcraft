@@ -1,3 +1,4 @@
+const sequelize = require("../config/connection");
 //Tavern-side Models
 const Achievement = require("./tavern/Achievement");
 const Comment = require("./tavern/Comment");
@@ -44,8 +45,9 @@ Character.hasOne(Inventory);
 Inventory.belongsTo(Character, {onDelete: "CASCADE"});
 Enemy.hasOne(Inventory);
 Inventory.belongsTo(Enemy, {onDelete: "CASCADE"});
-Item.belongsToMany(Inventory, {through: "InventoryItem"});
-Inventory.belongsToMany(Item, {through: "InventoryItem"});
+const InventoryItem = sequelize.define('InventoryItem', {}, { timestamps: false })
+Item.belongsToMany(Inventory, {through: InventoryItem});
+Inventory.belongsToMany(Item, {through: InventoryItem});
 
 
 //Shop and items associations
@@ -56,9 +58,9 @@ Item.belongsToMany(Shop, {through: "ShopItem"});
 //Character and spell associations
 Character.hasOne(Spellbook);
 Spellbook.belongsTo(Character, {onDelete: "CASCADE"});
-Spell.belongsToMany(Spellbook, {through: "SpellbookSpell"});
-// TODO I dont think we need to include the hasMany association when we already have belongsToMany...it throws an error saying the syntax isn't correct on seqeulizes end
-// Spellbook.hasMany(Spell, {through: "SpellbookSpell"});
+const SpellbookSpell = sequelize.define('SpellbookSpell', {}, { timestamps: false })
+Spell.belongsToMany(Spellbook, {through: SpellbookSpell});
+Spellbook.belongsToMany(Spell, {through: SpellbookSpell});
 
 //Spell and forge association
 //Might need to add a inventory like table for keywords list
@@ -88,5 +90,7 @@ module.exports = {
     Shop,
     Spell,
     Spellbook,
-    Story
+    Story,
+    SpellbookSpell,
+    InventoryItem
 };
