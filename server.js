@@ -44,6 +44,7 @@ app.use(express.json());
 // Static directory
 app.use(express.static("public"));
 
+// initializes the main.handlebars file for all calls in the frontEndController.js file
 const hbs = exphbs.create({});
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
