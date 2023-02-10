@@ -1,0 +1,69 @@
+h1 {
+        text-align: center;
+}
+
+.tavern {
+        width: 100%;
+        height: 85vh;
+        border: solid black 1px;
+}
+
+
+.header1 {
+        height: 5vh;
+}
+
+.box1 {
+        border: solid red 1px;
+        height: 80%;
+}
+
+input {
+        width: 30%;
+        margin: 10px auto;
+}
+
+#login-form {
+        border: solid black 1px;
+}
+
+#login-btn {
+        width: 15%;
+        margin: 0 auto;
+}
+
+#home-container {
+        align-items: center;
+        border: solid black 1px;
+        height: 80%;
+}
+
+#div {
+        border: solid saddlebrown 1px;
+        margin-left: 30px;
+}
+
+#character-sprite {
+        width: 200px;
+        height: 250px;
+        border: solid slateblue 1px;
+}
+
+#character-traits {
+        border: solid salmon 1px;
+        margin-right: 30px;
+}
+
+#game-btn {
+        width: 15%;
+        margin: 0 auto;
+}
+
+#footer {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin-left: auto;
+        margin-right: auto;
+}
