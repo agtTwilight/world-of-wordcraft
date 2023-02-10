@@ -1,5 +1,16 @@
+:root{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+}
+
 h1 {
         text-align: center;
+}
+
+input {
+        width: 30%;
+        margin: 10px auto;
 }
 
 .tavern {
@@ -16,11 +27,6 @@ h1 {
 .box1 {
         border: solid red 1px;
         height: 80%;
-}
-
-input {
-        width: 30%;
-        margin: 10px auto;
 }
 
 #login-form {
