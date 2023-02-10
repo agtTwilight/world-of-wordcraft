@@ -4,6 +4,10 @@ const mobData = [
     {
         EnemyId: 1,
         StoryId: 1
+    },
+    {
+        EnemyId: 2,
+        StoryId: 6
     }
 ]
 

@@ -81,7 +81,7 @@ const storyData = [
             "During your exploration through the ruins, you come across a largely webbed room. You figure there may something good in there, so you go in to take a look. It looks like you woke up the owners, and they're not too happy! 4 Large Spiders appear and are ready to protect their home!",
     },
     {
-        story_name: "Witches Domain",
+        story_name: "Witcheses Domain",
         tag: "Ruins",
         difficulty: 4,
         description:

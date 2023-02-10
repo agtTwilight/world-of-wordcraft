@@ -36,7 +36,7 @@ class Enemy {
         }
     }
 
-    defeated() {
+    defeated(mob) {
 
     }
 }
