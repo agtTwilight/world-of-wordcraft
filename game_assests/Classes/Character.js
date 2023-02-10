@@ -1,4 +1,7 @@
-class Character {
+const Actor = require(`./Actor`);
+
+class Character extends Actor{
+   
     constructor(
         id,
         character_name,
@@ -41,5 +44,43 @@ class Character {
         this.UserId = UserId;
         this.inventory = inventory;
         this.spellbook = spellbook;
+    } 
+    
+    displayEnemy(){
+
     }
+    
+    defeatEnemy(){
+
+    }
+    
+    displayLoot(){
+
+    }
+    
+    displayInventory(){
+
+    }
+    
+    equipItem(){
+
+    }
+    
+    displaySpells(){
+
+    }
+    
+    createSpell(){
+
+    }
+    
+    updateSpell(){
+
+    }
+    
+    gameOver(){
+
+    }
+
+
 }
