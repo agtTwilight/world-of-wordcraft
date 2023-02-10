@@ -18,6 +18,7 @@ const characterData = [
         level: 5,
         spell_point: 2,
         gold: 50,
+        UserId: 1
     },
     {
         character_name: "Twilight",
@@ -34,6 +35,7 @@ const characterData = [
         level: 6,
         spell_point: 4,
         gold: 70,
+        UserId: 2
     },
 ];
 
