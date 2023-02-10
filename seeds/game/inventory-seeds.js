@@ -5,11 +5,9 @@ const { Inventory } = require("../../models");
 const inventoryData = [
     {
         CharacterId: 1,
-        ItemId: [1, 2],
     },
     {
         EnemyId: 1,
-        ItemId: [1],
     },
 ];
 

@@ -45,8 +45,7 @@ Inventory.belongsTo(Character, {onDelete: "CASCADE"});
 Enemy.hasOne(Inventory);
 Inventory.belongsTo(Enemy, {onDelete: "CASCADE"});
 Item.belongsToMany(Inventory, {through: "InventoryItem"});
-// TODO I dont think we need to include the hasMany association when we already have belongsToMany...it throws an error saying the syntax isn't correct on seqeulizes end
-// Inventory.hasMany(Item, {through: "InventoryItem"});
+Inventory.belongsToMany(Item, {through: "InventoryItem"});
 
 
 //Shop and items associations
