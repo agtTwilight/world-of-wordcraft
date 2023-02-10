@@ -45,7 +45,7 @@ Item.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        is_equiped: {
+        is_equipped: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },

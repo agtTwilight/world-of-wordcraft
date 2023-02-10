@@ -1,6 +1,6 @@
 // Example seeds file from Module 13.
 // TODO: Create our own seed files following this structure
-const { Achievement } = require("../models");
+const { Achievement } = require("../../models");
 
 const achievementData = [
     {
