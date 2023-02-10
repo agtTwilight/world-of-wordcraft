@@ -1,9 +1,10 @@
-class Character {
+class Enemy {
     constructor(
         id,
-        character_name,
+        enemy_name,
         race,
         alignment,
+        sprite,
         health,
         magic,
         resistance,
@@ -15,16 +16,14 @@ class Character {
         level,
         spell_point,
         gold,
-        createdAt,
-        updatedAt,
-        UserId,
-        inventory,
-        spellbook
+        quantity,
+        inventory
     ) {
         this.id = id;
-        this.character_name = character_name;
+        this.enemy_name = enemy_name;
         this.race = race;
         this.alignment = alignment;
+        this.sprite = sprite;
         this.health = health;
         this.magic = magic;
         this.resistance = resistance;
@@ -36,10 +35,7 @@ class Character {
         this.level = level;
         this.spell_point = spell_point;
         this.gold = gold;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.UserId = UserId;
+        this.quantity = quantity;
         this.inventory = inventory;
-        this.spellbook = spellbook;
     }
 }
