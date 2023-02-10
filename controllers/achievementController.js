@@ -31,7 +31,8 @@ router.post("/", (req, res) => {
         }
         console.log(req.body);
         Achievement.create({
-                achievement: req.body.achievement,
+                text: req.body.text,
+                public: req.body.public,
                 UserId: req.session.userId
         }).then(achievementData => {
                 res.json(achievementData)

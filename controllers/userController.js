@@ -19,10 +19,10 @@ router.get("/logout", (req, res) => {
         res.send("logged out")
 })
 
-// get a single user
+// get a single user, their achievements, and those achievement comments
 router.get("/:id", (req, res) => {
         User.findByPk(req.params.id, {
-                include: [Achievement, {include: [Comment]}]
+                include: [{model:Achievement, include:[Comment]}]
         }).then(userData => {
                 res.json(userData)
         }).catch(err => {
@@ -68,6 +68,34 @@ router.post("/login", (req, res) => {
         }).catch(err => {
                 console.log(err);
                 res.status(500).json({ msg: "an error occured", err })
+        })
+})
+
+// delete User if logged in as themselves
+router.delete("/:id", (req, res) => {
+        if (!req.session.userId) {
+                return res.status(403).json({ msg: "login first post" })
+        }
+        console.log(req.body);
+        User.findByPk(req.params.id).then(userData => {
+                if (!userData) {
+                        return res.status(404).json({ msg: "no such user" })
+                } else if (userData.dataValues.id !== req.session.userId) {
+                        return res.status(403).json({ msg: "not your user!" })
+                }
+                User.destroy({
+                        where: {
+                                id: req.params.id,
+                        }
+                }).then(userData => {
+                        res.json(userData)
+                }).catch(err => {
+                        console.log(err);
+                        res.status(500).json({ msg: "oh noes!", err })
+                })
+        }).catch(err => {
+                console.log(err);
+                res.status(500).json({ msg: "oh noes!", err })
         })
 })
 

@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 // get a single comment
 router.get("/:id", (req, res) => {
         Comment.findByPk(req.params.id, {
-                include: [User, Achievement]
+                include: [Achievement]
         }).then(commentData => {
                 res.json(commentData)
         }).catch(err => {
@@ -32,6 +32,7 @@ router.post("/", (req, res) => {
         console.log(req.body);
         Comment.create({
                 text: req.body.text,
+                AchievementId: req.body.AchievementId,
                 UserId: req.session.userId
         }).then(commentData => {
                 res.json(commentData)
@@ -50,7 +51,7 @@ router.delete("/:id", (req, res) => {
         Comment.findByPk(req.params.id).then(commentData => {
                 if (!commentData) {
                         return res.status(404).json({ msg: "no such comment" })
-                } else if (commentData.UserId !== req.session.userId) {
+                } else if (commentData.dataValues.UserId !== req.session.userId) {
                         return res.status(403).json({ msg: "not your comment!" })
                 }
                 Comment.destroy({

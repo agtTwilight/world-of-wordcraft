@@ -13,20 +13,22 @@ const sequelize = require("../config/connection");
 const seedAll = async () => {
     await sequelize.sync({ force: true });
     console.log("\n----- DATABASE SYNCED -----\n");
+    
+    await seedUsers();
+    console.log("\n----- USERS SEEDED -----\n");
+
     await seedAchievements();
     console.log("\n----- ACHIEVEMENTS SEEDED -----\n");
 
     await seedComments();
     console.log("\n----- COMMENTS SEEDED -----\n");
 
-    await seedGroups();
-    console.log("\n----- GROUPS SEEDED -----\n");
+    // await seedGroups();
+    // console.log("\n----- GROUPS SEEDED -----\n");
 
-    await seedGroupTags();
-    console.log("\n----- GROUP TAGS SEEDED -----\n");
+    // await seedGroupTags();
+    // console.log("\n----- GROUP TAGS SEEDED -----\n");
 
-    await seedUsers();
-    console.log("\n----- USERS SEEDED -----\n");
 
     process.exit(0);
 };

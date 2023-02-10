@@ -6,10 +6,12 @@ const achievementData = [
     {
         text: "Blockhead won the Spell Slinging Ring!",
         public: true,
+        UserId: 1,
     },
     {
         text: "agtTwilight has saved princess Anya!",
         public: true,
+        UserId: 2,
     },
 ];
 

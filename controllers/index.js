@@ -7,7 +7,7 @@ const userRoutes = require('./userController');
 router.use("/api/users",userRoutes);
 
 const achivementRoutes = require('./achievementController');
-router.use("/api/achivements",achivementRoutes);
+router.use("/api/achievements",achivementRoutes);
 
 const commentRoutes = require('./commentController');
 router.use("/api/comments",commentRoutes);
