@@ -13,6 +13,7 @@ const seedCharacters = require("./game/character-seeds");
 const seedInventories = require("./game/inventory-seeds");
 const seedItems = require("./game/item-seeds");
 const seedEnemies = require("./game/enemy-seeds");
+const seedInventoryItems = require("./game/inventoryItem-seeds");
 // const seedForge = require("./game/forge-seeds");
 // const seedMobs = require("./game/mob-seeds");
 // const seedShop = require("./game/shop-seeds");
@@ -50,12 +51,15 @@ const seedAll = async () => {
     console.log("\n----- CHARACTERS SEEDED -----\n");
 
     await seedEnemies();
-    console.log("\n----- ITEMS SEEDED -----\n");
+    console.log("\n----- ENEMIES SEEDED -----\n");
 
-    await seedItems();
-    console.log("\n----- ITEMS SEEDED -----\n");
+    // await seedItems();
+    // console.log("\n----- ITEMS SEEDED -----\n");
 
-    await seedInventories();
+    // await seedInventories();
+    // console.log("\n----- INVENTORIES SEEDED -----\n");
+
+    await seedInventoryItems();
     console.log("\n----- INVENTORIES SEEDED -----\n");
 
     // Uncomment the below seeds once they are good to go - you may need to change the order in which they are placed relative to seeding order!

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Chirp,User} = require('../models');
+const {User} = require('../models');
 
 // TODO: once home & login .handlebars are made, 1. check if user is logged in (if so, res.render home w/ appropriate data) else, res.render login w/ appropriate data
 router.get("/",(req,res)=>{
