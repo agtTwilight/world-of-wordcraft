@@ -24,6 +24,7 @@ router.get("/:id", (req, res) => {
         User.findByPk(req.params.id, {
                 include: [{model:Achievement, include:[Comment]},{model:Character, include:[{model: Inventory, include:[Item]}, {model:Spellbook, include:[Spell]}]}]
         }).then(userData => {
+                console.log(userData)
                 res.json(userData)
         }).catch(err => {
                 console.log(err);

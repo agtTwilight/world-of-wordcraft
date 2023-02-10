@@ -1,26 +1,6 @@
 class Character {
-    constructor(
-        id,
-        character_name,
-        race,
-        alignment,
-        health,
-        magic,
-        resistance,
-        defense,
-        accuracy,
-        luck,
-        consitution,
-        exp,
-        level,
-        spell_point,
-        gold,
-        createdAt,
-        updatedAt,
-        UserId,
-        inventory,
-        spellbook
-    ) {
+    constructor(obj) {
+        const {id,character_name,race,alignment,magic,health,resistance,defense,accuracy,luck,constitution,exp,level,spell_point,gold,createdAt,updatedAt,UserId,Inventory,Spellbook} = obj
         this.id = id;
         this.character_name = character_name;
         this.race = race;
@@ -31,7 +11,7 @@ class Character {
         this.defense = defense;
         this.accuracy = accuracy;
         this.luck = luck;
-        this.constitution = consitution;
+        this.constitution = constitution;
         this.exp = exp;
         this.level = level;
         this.spell_point = spell_point;
@@ -39,7 +19,9 @@ class Character {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.UserId = UserId;
-        this.inventory = inventory;
-        this.spellbook = spellbook;
+        this.Inventory = Inventory;
+        this.Spellbook = Spellbook;
     }
 }
+
+module.exports = Character;
