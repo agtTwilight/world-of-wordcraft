@@ -21,7 +21,45 @@ class Character {
         this.UserId = UserId;
         this.Inventory = Inventory;
         this.Spellbook = Spellbook;
+    } 
+    
+    displayEnemy(){
+
     }
+    
+    defeatEnemy(){
+
+    }
+    
+    displayLoot(){
+
+    }
+    
+    displayInventory(){
+
+    }
+    
+    equipItem(){
+
+    }
+    
+    displaySpells(){
+
+    }
+    
+    createSpell(){
+
+    }
+    
+    updateSpell(){
+
+    }
+    
+    gameOver(){
+
+    }
+
+
 }
 
 module.exports = Character;
