@@ -15,8 +15,7 @@ router.use("/api/comments",commentRoutes);
 // const groupRoutes = require('./groupController');
 // router.use("/api/groups",groupRoutes);
 
-// TODO: The frontEndRoutes below is what Joe used for handlebars. When we are ready to implement that code we can uncomment this section!
-// const frontEndRoutes = require('./frontEndController');
-// router.use("/",frontEndRoutes);
+const frontEndRoutes = require('./frontEndController');
+router.use("/",frontEndRoutes);
 
 module.exports = router;
