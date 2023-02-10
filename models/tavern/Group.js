@@ -17,4 +17,4 @@ Group.init({
 });
 
 // export character
-module.exports= Group
+module.exports=Group

@@ -6,11 +6,14 @@ const router = express.Router();
 const userRoutes = require('./userController');
 router.use("/api/users",userRoutes);
 
-const achivementRoutes = require('./achivementController');
-router.use("/api/achivement",achivementRoutes);
+const achivementRoutes = require('./achievementController');
+router.use("/api/achievements",achivementRoutes);
 
 const commentRoutes = require('./commentController');
-router.use("/api/comment",commentRoutes);
+router.use("/api/comments",commentRoutes);
+
+// const groupRoutes = require('./groupController');
+// router.use("/api/groups",groupRoutes);
 
 // TODO: The frontEndRoutes below is what Joe used for handlebars. When we are ready to implement that code we can uncomment this section!
 // const frontEndRoutes = require('./frontEndController');

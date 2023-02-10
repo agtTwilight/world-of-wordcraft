@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // TODO Requiring our models for syncing
-const {} = require('./models');
+const {User, Achievement, Comment, Group} = require('./models');
 
 // Sets up sessions cookies
 const sess = {
