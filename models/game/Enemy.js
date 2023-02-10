@@ -26,6 +26,10 @@ Enemy.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        attack: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         magic: {
             type: DataTypes.INTEGER,
             allowNull: false,

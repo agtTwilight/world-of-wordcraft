@@ -18,11 +18,11 @@ const seedSpellbookSpells = require("./game/spellbookSpell-seeds");
 const seedSpellbooks = require("./game/spellbook-seeds");
 const seedSpells = require("./game/spell-seeds");
 // const seedForge = require("./game/forge-seeds");
-// const seedMobs = require("./game/mob-seeds");
+const seedMobs = require("./game/mob-seeds");
 // const seedShop = require("./game/shop-seeds");
 // const seedSpells = require("./game/spell-seeds");
 // const seedSpellbook = require("./game/spellbook-seeds");
-// const seedStory = require("./game/story-seeds");
+const seedStory = require("./game/story-seeds");
 
 const sequelize = require("../config/connection");
 
@@ -78,9 +78,11 @@ const seedAll = async () => {
 
     // await seedForge();
     // console.log("\n----- FORGE SEEDED -----\n");
+    await seedStory();
+    console.log("\n----- STORY SEEDED -----\n");
 
-    // await seedMobs();
-    // console.log("\n----- MOBS SEEDED -----\n");
+    await seedMobs();
+    console.log("\n----- MOBS SEEDED -----\n");
 
     // await seedShop();
     // console.log("\n----- SHOP SEEDED -----\n");
@@ -91,8 +93,7 @@ const seedAll = async () => {
     // await seedSpellbook();
     // console.log("\n----- SPELLBOOK SEEDED -----\n");
 
-    // await seedStory();
-    // console.log("\n----- STORY SEEDED -----\n");
+
 
     process.exit(0);
 };
