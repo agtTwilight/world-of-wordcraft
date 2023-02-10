@@ -11,7 +11,6 @@ const Enemy = require("./game/Enemy");
 const Forge = require("./game/Forge");
 const Inventory = require("./game/Inventory");
 const Item = require("./game/Item");
-const Mob = require("./game/Mob");
 const Shop = require("./game/Shop");
 const Spell = require("./game/Spell");
 const Spellbook = require("./game/Spellbook");
@@ -68,11 +67,12 @@ Spell.hasMany(Forge);
 Forge.belongsTo(Spell);
 
 //Enemy mob and story assocations
-Story.hasOne(Mob);
-Mob.belongsTo(Story);
+
 // TODO I dont think we need to include the hasMany association when we already have belongsToMany...it throws an error saying the syntax isn't correct on seqeulizes end
-// Mob.hasMany(Enemy, {through: "EnemyMob"});
-Enemy.belongsToMany(Mob, {through: "EnemyMob"});
+const Mob = sequelize.define('Mob', {}, { timestamps: false })
+Story.belongsToMany(Enemy, {through: "Mob"});
+Enemy.belongsToMany(Story, {through: "Mob"});
+
 
 
 // TODO export all updated (associations added) models
