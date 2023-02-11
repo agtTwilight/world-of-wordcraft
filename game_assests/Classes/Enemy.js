@@ -40,10 +40,10 @@ class Enemy {
         }
     }
 
-    //feed this function the Mob object
-    defeated(mob) {
-        const indexToRemove = mob.currentEnemies.indexOf(this);
-        mob.currentEnemies.splice(indexToRemove, 1);
+    //feed this function the game object
+    defeated(game) {
+        const indexToRemove = game.currentEnemies.indexOf(this);
+        game.currentEnemies.splice(indexToRemove, 1);
     }
 }
 
