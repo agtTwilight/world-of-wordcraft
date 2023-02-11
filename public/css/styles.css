@@ -10,7 +10,7 @@
         display:flex;
         justify-content: center;
         align-items: center;
-        color:#564138;
+        color:#F7D002;
 }
 .log-header {
         text-align: center;
@@ -22,10 +22,13 @@
         height: 80vh;
         border: solid black 1px;
         border-radius: 30px;
+        background-image:url("../assets/pixel-art-tavern-test.png");
+        background-size: 70%;
 }
 
 .tavern-header {
         height: 10vh;
+        background: #7A542E;
 }
 
 .box1 {
@@ -78,4 +81,6 @@
         bottom: 0;
         margin-left: auto;
         margin-right: auto;
+        background: #03254E;
+        color: white;
 }
