@@ -8,14 +8,14 @@ const storyData = [
         tag: "Forest",
         difficulty: 1,
         description:
-            "You are strolling through the forest and you noticed the bushes ahead of you have something shiny peeking out. You go to investigate the shiny item, and are quickly ambushed by 3 Goblins!",
+            "You are strolling through the forest and you noticed the bushes ahead of you have something shiny peeking out. You decide to go investigate the bush and by surprise, 3 Goblins jumped out waiting to ambush their next victim!",
     },
     {
         story_name: "Tree of Spiders",
         tag: "Forest",
         difficulty: 2,
         description:
-            "You find a nice large tree that provides a lot of shade, perfect for a place to rest! As you set your things down to take a quick break, you notice 5 Large Spiders descending upon you!",
+            "During your exploration you find a nice large tree that provides a lot of shade, perfect for a place to rest! As you set your equipment down to take a quick break, you notice 5 Large Spiders descending upon you!",
     },
     {
         story_name: "Forest Graveyard",
@@ -81,11 +81,11 @@ const storyData = [
             "During your exploration through the ruins, you come across a largely webbed room. You figure there may something good in there, so you go in to take a look. It looks like you woke up the owners, and they're not too happy! 4 Large Spiders appear and are ready to protect their home!",
     },
     {
-        story_name: "Witcheses Domain",
+        story_name: "Skeleton Ring",
         tag: "Ruins",
         difficulty: 4,
         description:
-            "As you are making your way to the next city, you come across an abondoned ruin. You make your way to the entrance hoping to take a quick break, unexpectedly, 2 Witches come out of ruin gates and they're not looking for friends!",
+            "You are exploring the ruins and find a large room that looks like it might've had some battles back in its prime. A few steps in, the room lights up and the entrance closes behind you - 5 Skeletons appear, it seems the battle-ring is still in business!",
     },
 ];
 
