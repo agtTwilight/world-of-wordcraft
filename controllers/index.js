@@ -22,4 +22,7 @@ router.use("/",frontEndRoutes);
 const enemyRoutes = require('./enemyController');
 router.use("/api/enemies",enemyRoutes);
 
+const storyRoutes = require('./storyController');
+router.use("/api/stories",storyRoutes);
+
 module.exports = router;

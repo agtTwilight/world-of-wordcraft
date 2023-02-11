@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {User, Achievement, Comment, Character, Inventory, Item, Spellbook, Spell} = require('../models');
 const bcrypt = require("bcrypt");
+const { findByPk } = require('../models/tavern/Achievement');
 
 // display all users
 router.get("/", (req, res) => {
@@ -99,5 +100,16 @@ router.delete("/:id", (req, res) => {
                 res.status(500).json({ msg: "oh noes!", err })
         })
 })
+
+router.get(`/testcharacter/:id`, async (req, res) => {
+        try{
+                const getCharacter = await Character.findByPk(req.params.id);
+                res.json(getCharacter);
+        } catch(err) {
+                console.log(err);
+                res.status(500).json({ msg: "oh noes!", err })
+        }
+});
+
 
 module.exports = router;
