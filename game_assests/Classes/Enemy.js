@@ -29,8 +29,8 @@ class Enemy {
     }
 
     attackPlayer(player) {
-        damage = player.defense/Math.floor(Math.random() * this.luck) - this.attack;
-        return damage;
+        console.log(player.defense/Math.floor(Math.random() * this.luck) - this.attack)
+        player.health = player.health - (player.defense/Math.floor(Math.random() * this.luck) - this.attack);
     }
 
     takeDamage(damage) {
@@ -40,8 +40,10 @@ class Enemy {
         }
     }
 
+    //feed this function the Mob object
     defeated(mob) {
-
+        const indexToRemove = mob.currentEnemies.indexOf(this);
+        mob.currentEnemies.splice(indexToRemove, 1);
     }
 }
 

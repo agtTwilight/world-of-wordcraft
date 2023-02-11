@@ -1,15 +1,12 @@
 const Enemy = require(`./Enemy`);
-
-let storyList = [];
-let enemyList = [];
-let currentEnemies = [];
-
 //probably need to add spell points to enemies which are only there to be transfered to player upon defeat.
 //probably need to remove quantity as quantity will be dynamically defined in the mob class upon enemy creation
 
 class Mob {
     constructor() {
-
+        this.storyList = [];
+        this.enemyList = [];
+        this.currentEnemies = [];
     }
     selectStories(campaignLength){
         fetch(`http://localhost:3000/api/stories`)
@@ -19,18 +16,17 @@ class Mob {
         .then(data => {
             for (let i = 0; i < campaignLength; i++) {
                 const storyNumber = Math.floor(Math.random() * data.length) + 1;
-                storyList.push(storyNumber);
+                this.storyList.push(storyNumber);
             }
-            console.log(`story list: ` + storyList);
-            this.getEnemyList(storyList);
-
+            if(this.currentEnemies === []){
+                this.getEnemyList(storyList);
+            } else {
+                return this.storyList;
+            }
         })
     }
 
-    getEnemyList(stories){
-
-        console.log(`story 0: ` + stories[0]);
-        
+    getEnemyList(stories){        
         const currentStory = stories[0];
         
         fetch(`http://localhost:3000/api/enemies/mob/${currentStory}`)
@@ -38,37 +34,25 @@ class Mob {
                 return res.json();
             })
             .then(data => {
-                enemyList = data.map((enemy) => {return enemy.EnemyId});
+                this.enemyList = data.map((enemy) => {return enemy.EnemyId});
                 
-                console.log(`enemy list: ` + enemyList);
-                this.generateMob(enemyList);
+                if(this.currentEnemies === []){
+                    this.generateMob(this.enemyList)
+                } else {
+                    return this.enemyList;
+                }           
             });
     }
 
-    generateMob(enemies){
-        enemies.forEach((enemy) => {
-            console.log(enemy);
-            fetch(`http://localhost:3000/api/enemies/${enemy}`)
-            .then(res =>{
-                return res.json();
-            })
-            .then(data => {
-                //const{ id, enemy_name, race, alignment, sprite, health, attack, magic, resistance, defense, accuracy, luck, consitution, exp, level, gold} = data;
-                
-                const newEnemy = new Enemy(data)
-                console.log(data);
-
-                console.log(`new enemy: ` + newEnemy);
-
-                currentEnemies.push(newEnemy);
-
-                console.log(`current enemies: ` + currentEnemies);
-            });
+    generateMob (enemies){
+        enemies.forEach(async (enemy) => {
+            const getEnemy = await fetch(`http://localhost:3000/api/enemies/${enemy}`);
+            const enemyObj = await getEnemy.json();
+            const newEnemy = new Enemy(enemyObj);
+            this.currentEnemies.push(newEnemy);
         });
+        return this.currentEnemies;
     }
 }
-
-const test = new Mob;
-test.selectStories(3);
 
 module.exports = Mob;
