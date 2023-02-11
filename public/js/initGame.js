@@ -10,7 +10,6 @@ const getCharacterData = async () => {
         // create the playerCharacter
         const characterData = newData.Characters[0];
         const playerCharacter = new Character(characterData)
-        console.log(playerCharacter)
 
         return playerCharacter
 }
