@@ -2,6 +2,8 @@
 // TODO: Create our own seed files following this structure
 const { Enemy } = require("../../models");
 
+//probably need to add spell points to enemies which are only there to be transfered to player upon defeat.
+//probably need to remove quantity as quantity will be dynamically defined in the mob class upon enemy creation
 const enemyData = [
     {
         enemy_name: "Green Goblin",
@@ -24,6 +26,44 @@ const enemyData = [
     },
     {
         enemy_name: "Witch",
+        race: "Human",
+        alignment: "Evil",
+        sprite: "blah2",
+        health: 80,
+        attack: 50,
+        magic: 45,
+        resistance: 35,
+        defense: 10,
+        accuracy: 65,
+        luck: 15,
+        constitution: 8,
+        exp: 140,
+        level: 6,
+        spell_point: 2,
+        gold: 150,
+        quantity: 1,
+    },
+    {
+        enemy_name: "Big Spider",
+        race: "Spider",
+        alignment: "Evil",
+        sprite: "blah",
+        health: 100,
+        attack: 60,
+        magic: 5,
+        resistance: 10,
+        defense: 35,
+        accuracy: 50,
+        luck: 5,
+        constitution: 10,
+        exp: 100,
+        level: 5,
+        spell_point: 1,
+        gold: 100,
+        quantity: 3,
+    },
+    {
+        enemy_name: "Sad Skeleton",
         race: "Human",
         alignment: "Evil",
         sprite: "blah2",
