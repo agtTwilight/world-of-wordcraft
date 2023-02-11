@@ -11,11 +11,11 @@ const playerCharacter = await Utils.getCharacterData()
 console.log(playerCharacter)
 
 inventoryBtn.addEventListener("click", async() =>{
-    playerCharacter.displayInventory(dataStorage);
+    await playerCharacter.displayInventory(dataStorage,playerCharacter);
 })
 
-spellbookBtn.addEventListener("click", function(){
-    playerCharacter.displaySpells(dataStorage);
+spellbookBtn.addEventListener("click", async () =>{
+    await playerCharacter.displaySpells(dataStorage);
 })
 
 pauseBtn.addEventListener(`click`, function() {

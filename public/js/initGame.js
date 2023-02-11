@@ -36,20 +36,51 @@ export class Character {
     
         }
         
-        displayInventory(ul){
-                for (let i = 0; i < this.Inventory.Items.length; i ++) {
+        displayInventory(ul, pc){
+            if (ul.children.length>0){
+                for (let i = 0; i < ul.children.length; i ++) {
+                    ul.removeChild(ul.children[i])
+                }
+            }
+            for (const item in this.Inventory.Items) {
+                console.log(this.Inventory.Items[item])
+            }
+            for (let i = 0; i < this.Inventory.Items.length; i ++) {
                 let li = document.createElement("li")
                 li.textContent = this.Inventory.Items[i].item_name;
-                console.log(this.Inventory.Items[i].item_name)
+                li.addEventListener("click", function(event){
+                    pc.equipItem(event.target.textContent)
+                })
                 ul.appendChild(li);
             }
         }
         
-        equipItem(){
-    
+        equipItem(item){
+            // remove equipped item
+            for (const i in this.Inventory.Items) {
+                if (this.Inventory.Items[i].is_equipped) {
+                    this.Inventory.Items[i].is_equipped = false
+                }
+            }
+
+            // equip new item
+            for (const i in this.Inventory.Items) {
+                if (this.Inventory.Items[i].item_name === item) {
+                    if (!this.Inventory.Items[i].is_equipped) {
+                        this.Inventory.Items[i].is_equipped = true
+                        console.log(this.Inventory.Items)
+                    }
+                }
+            }
         }
         
         displaySpells(ul){
+            if (ul.children.length>0){
+                for (let i = 0; i < ul.children.length; i ++) {
+                    ul.removeChild(ul.children[i])
+                }
+            }
+
             for (let i = 0; i < this.Spellbook.Spells.length; i ++) {
                 let li = document.createElement("li")
                 li.textContent = this.Spellbook.Spells[i].spell_name;
@@ -57,12 +88,19 @@ export class Character {
             }
         }
     
-        createSpell(){
-    
+        createSpell(is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit){
+            // construct new spell obj
+            this.Spellbook.Spells.push({is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit})
         }
         
-        updateSpell(){
-    
+        updateSpell(is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit){
+            for (const i in this.Spellbook.Spells) {
+                if (this.Spellbook.Spells[i].spell_name === spell_name) {
+                    const id = this.Spellbook.Spells[i].id
+                    this.Spellbook.Spells[i] = {is_new,id,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit}
+                    console.log(this.Spellbook.Spells)
+                }
+            }
         }
         
         gameOver(){
