@@ -12,39 +12,69 @@
         align-items: center;
         color:#F7D002;
 }
-.log-header {
-        text-align: center;
+
+#log-container{
+        position: relative;
 }
 
+#log-background{
+        position:absolute;
+        height: 125%;
+        width:150%;
+        z-index: 0;
+        left: -28%;
+        top:-14%
+}
+#log-items{
+        position: absolute;
+        top: 25%;
+        left: 10%;
+        z-index: 2;
+        color: black;
+}
+
+.log-header {
+        position: absolute;
+        left: 0; 
+        right: 0; 
+        top: 7.5%;
+        text-align: center;
+        margin-left: auto; 
+        margin-right: auto; 
+}
 
 .tavern {
-        width: 100%;
-        height: 80vh;
+        width: 100vw;
+        height: 90vh;
         border: solid black 1px;
-        border-radius: 30px;
         background-image:url("../assets/pixel-art-tavern-test.png");
-        background-size: 70%;
+        background-size: 110% 110%;
+        padding-top:2%;
 }
 
 .tavern-header {
         height: 10vh;
         background: #7A542E;
 }
+ul {
+        list-style-type: none;
+        margin:0;
+        padding:0 20%;
+      }
 
 .box1 {
-        border: solid red 2px;
-        height: 80%;
+        height: 85%;
         border-radius: 30px;
         margin: 20px;
 }
 
-#login-btn {
-        width: 15%;
-        margin: 0 auto;
+.border1{
+        border: solid black 3px;
 }
-#signup-btn {
-        width: 15%;
-        margin: 0 auto;
+
+.blur{
+        background: rgba(31, 31, 31, 0.5);
+        backdrop-filter: blur(10px);
 }
 
 #home-container {
@@ -74,13 +104,3 @@
         margin: 0 auto;
 }
 
-#footer {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin-left: auto;
-        margin-right: auto;
-        background: #03254E;
-        color: white;
-}
