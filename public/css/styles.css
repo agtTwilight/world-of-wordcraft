@@ -2,45 +2,51 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: 'Dosis', sans-serif;
+        font-family: 'Gentium Book Plus', serif;
 }
 
-h1 {
+.main-header {
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        color:#564138;
+}
+.log-header {
         text-align: center;
 }
 
-input {
-        width: 30%;
-        margin: 10px auto;
-}
 
 .tavern {
         width: 100%;
-        height: 85vh;
+        height: 80vh;
         border: solid black 1px;
+        border-radius: 30px;
 }
 
-
-.header1 {
-        height: 5vh;
+.tavern-header {
+        height: 10vh;
 }
 
 .box1 {
-        border: solid red 1px;
+        border: solid red 2px;
         height: 80%;
-}
-
-#login-form {
-        border: solid black 1px;
+        border-radius: 30px;
+        margin: 20px;
 }
 
 #login-btn {
         width: 15%;
         margin: 0 auto;
 }
+#signup-btn {
+        width: 15%;
+        margin: 0 auto;
+}
 
 #home-container {
         align-items: center;
-        border: solid black 1px;
+        border: solid blue 1px;
         height: 80%;
 }
 

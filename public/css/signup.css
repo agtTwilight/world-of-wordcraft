@@ -1,4 +1,12 @@
-h1 {
+*{
+        font-family: 'Dosis', sans-serif;
+font-family: 'Gentium Book Plus', serif;
+}
+
+h2 {
         text-align: center;
-        color: brown;
+        color: #5EB1BF;
+}
+input {
+        margin: 10px auto;
 }

@@ -18,4 +18,8 @@ router.use("/api/comments",commentRoutes);
 const frontEndRoutes = require('./frontEndController');
 router.use("/",frontEndRoutes);
 
+//Gameside Routes
+const enemyRoutes = require('./enemyController');
+router.use("/api/enemies",enemyRoutes);
+
 module.exports = router;
