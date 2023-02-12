@@ -38,11 +38,11 @@ actionMenu.addEventListener(`click`, function(e) {
 })
 
 inventoryBtn.addEventListener("click", async() =>{
-    playerCharacter.displayInventory(dataStorage);
+    await playerCharacter.displayInventory(dataStorage,playerCharacter);
 })
 
-spellbookBtn.addEventListener("click", function(){
-    playerCharacter.displaySpells(dataStorage);
+spellbookBtn.addEventListener("click", async () =>{
+    await playerCharacter.displaySpells(dataStorage);
 })
 
 pauseBtn.addEventListener(`click`, function() {
