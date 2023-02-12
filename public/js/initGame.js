@@ -7,6 +7,7 @@ export class Character {
             this.race = race;
             this.alignment = alignment;
             this.health = health;
+            this.currentHealth = health;
             this.magic = magic;
             this.resistance = resistance;
             this.defense = defense;
@@ -23,6 +24,18 @@ export class Character {
             this.Inventory = Inventory;
             this.Spellbook = Spellbook;
         } 
+
+        attackEnemy(enemy) {
+            console.log(enemy.defense/Math.floor(Math.random() * this.luck) - this.attack)
+            enemy.health = enemy.health - (enemy.defense/Math.floor(Math.random() * this.luck) - this.attack);
+        }
+    
+        takeDamage(damage) {
+            this.currentHealth -= damage;
+            if(this.currentHealth <= 0) {
+                self.gameOver();
+            }
+        }
         
         displayEnemy(){
     
@@ -80,7 +93,7 @@ export class Character {
                     ul.removeChild(ul.children[i])
                 }
             }
-
+            console.log(this)
             for (let i = 0; i < this.Spellbook.Spells.length; i ++) {
                 let li = document.createElement("li")
                 li.textContent = this.Spellbook.Spells[i].spell_name;
@@ -103,8 +116,21 @@ export class Character {
             }
         }
         
-        gameOver(){
-    
+        // TODO: Make Character, Item, and Spell routes that POST DELETE or PUT requests
+        async gameOver(){
+            // update db character
+            const {character_name, race, alignment, health, magic, resistance, defense, accuracy, luck, constitution, exp, level, spell_point, gold, UserId} = this
+
+            await fetch(`/api/characters/${this.id}`, {
+                method: "PUT",
+                body: JSON.stringify({character_name, race, alignment, health, magic, resistance, defense, accuracy, luck, constitution, exp, level, spell_point, gold, UserId})
+            })
+
+            // update db inventory
+
+            // update db spellbook
+
+            // update db junction tables (inventory and spellbook)
         }
     
     
