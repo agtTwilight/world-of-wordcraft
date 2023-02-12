@@ -29,8 +29,20 @@ export class Enemy {
     }
 
     attackPlayer(player) {
-        console.log(player.defense/Math.floor(Math.random() * this.luck) - this.attack)
-        player.health = player.health - (player.defense/Math.floor(Math.random() * this.luck) - this.attack);
+        const lineItemsToRemove = document.querySelectorAll(`li`);
+        lineItemsToRemove.remove();
+        
+        const damage = Math.round(this.attack - (player.defense/Math.floor((Math.random() * this.luck) +1)));
+        player.health -= damage;
+        
+        let reportDamage = document.createElement("li");
+        let reportHealth = document.createElement("li");
+        reportDamage.textContent(`You took ${damage}pts of damage`);
+        reportHealth.textContent(`Your health is at ${player.health}`);
+        ul.appendChild(reportDamage);
+        ul.appendChild(reportHealth);
+
+        console.log(player.health);
     }
 
     takeDamage(damage) {
@@ -44,5 +56,11 @@ export class Enemy {
     defeated(game) {
         const indexToRemove = game.currentEnemies.indexOf(this);
         game.currentEnemies.splice(indexToRemove, 1);
+
+        if(game.currentEnemies.length != 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

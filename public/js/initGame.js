@@ -22,6 +22,7 @@ export class Game {
             spell_points: 0,
             items: []
         };
+        this.storyboxMode = `null`;
     }
 
     storyboxInit(ul){
@@ -40,8 +41,8 @@ export class Game {
                 const storyNumber = Math.floor(Math.random() * data.length) + 1;
                 this.storyList.push(storyNumber);
                 this.stories.push(data[storyNumber]);
+                console.log(this.stories);
             }
-            console.log(this.currentEnemies);
             if(this.currentEnemies[0] === undefined){
                 this.getEnemyList(this.storyList);
                 console.log(`init`);
@@ -52,12 +53,17 @@ export class Game {
         })
     }
 
-    progressStory (ul){
-        const lineItemsToRemove = document.querySelector(`li`);
-        lineItemsToRemove.remove();
+    progressStory (ul, btn){
+        //remove any line items in spellbox then update and add new line item
+        this.clearLi();
         const li = document.createElement("li");
         li.textContent = this.stories[0].description;
         ul.appendChild(li);
+
+        //update action menu button
+        btn.textContent = `Attack`;
+        btn.classList.remove(`continue-action`);
+        btn.classList.add(`attack-action`);
     }
 
     getEnemyList(stories){        
@@ -98,14 +104,164 @@ export class Game {
         return this.currentEnemies;
     }
 
-    lootScreen (player) {
-        //console.log(player);
-        //console.log(player);
-        //setTimeout(() => {console.log(Object.keys(player))},1000);
-        console.log(this.loot);
+    lootScreen (player, ul, btn) {
+        this.clearLi();
+
+        if(this.loot.gold) {
+            const li = document.createElement("li");
+            li.textContent = `You received ${this.loot.gold} pieces of gold.`;
+        }
+        if(this.loot.exp) {
+            const li = document.createElement("li");
+            li.textContent = `You received ${this.loot.exp} experience points.`;
+        }
+        //add spell points
+
         player.gold += this.loot.gold;
         player.exp += this.loot.exp;
         //player.spell_points += this.loot.spell_points;
-        console.log(player.gold + ` ` + player.exp);
+
+        btn.textContent = `Proceed Onward`;
+        btn.classList.add(`continue-action`);
+    }
+
+    combatScreen (player, ul, btn) {
+        this.clearLi();
+    const {activeSpell} = player;
+
+        const activeSpellEl = document.querySelector(`#active-spell`);
+        activeSpellEl.classList.remove(`hidden`);
+        activeSpellEl.textContent = `current spell: ${activeSpell.spell_name} Mg: ${activeSpell.magic_cost} Pw: ${activeSpell.power}`;
+
+        for (let i = 0; i < this.currentEnemies.length; i ++) {
+            let li = document.createElement("li");
+            let btn = document.createElement(`button`);
+            btn.textContent = this.currentEnemies[i].enemy_name + `   HP: ` + this.currentEnemies[i].health;
+            btn.classList.add(`attack-enemy-btn`);
+            btn.enemyId = this.currentEnemies[i].id;
+            li.appendChild(btn);
+            ul.appendChild(li);
+        }
+
+        //update action menu button
+        btn.textContent = `Change Spell`;
+        btn.classList.remove(`continue-to-main`);
+        btn.classList.add(`attack-action`);
+    }
+
+    displayEnemies (ul) {
+        this.clearLi();
+
+        for (let i = 0; i < this.currentEnemies.length; i ++) {
+            let li = document.createElement("li");
+            let btn = document.createElement(`button`);
+            btn.textContent = this.currentEnemies[i].enemy_name + `   HP: ` + this.currentEnemies[i].health;
+            btn.classList.add(`attack-enemy-btn`);
+            btn.enemyId = this.currentEnemies[i].id;
+            li.appendChild(btn);
+            ul.appendChild(li);
+        }
+    }
+
+    combat (enemyId, player, btn, ul, state) {
+        this.hideActiveSpellEl();
+        
+        let selectedEnemy = this.currentEnemies.filter(enemy => enemy.id === enemyId);
+        selectedEnemy = selectedEnemy[0];
+
+        console.log(`combat`);
+        //Player State=============================================
+        if(state === `player`) {
+            this.clearLi();
+            
+            console.log(selectedEnemy);
+
+            const damage = Math.round(player.activeSpell.power - (selectedEnemy.defense/Math.floor((Math.random() * player.luck) +1)));
+            selectedEnemy.health -= damage;
+            console.log(selectedEnemy.health);
+            
+            //add [0] to each instance of selectedEnemy or just change what selected enemy is selecting
+            //send on path to enemy turn or loot screen
+            if(selectedEnemy.health <= 0) {
+                const isWon = selectedEnemy.defeated(this);
+    
+                if(isWon) {
+                    let li = document.createElement("li");
+                    li.textContent =`You Won`;
+                    ul.appendChild(li);
+
+                    this.stories.shift();
+                    this.storyList.shift();
+                    btn.textContent = `Continue`;
+                    btn.classList.remove(`attack-action`);
+                    btn.classList.add(`continue-to-loot`)
+                    console.log(`in isWon: ` + selectedEnemy.health);
+                } else {
+                    let reportDamage = document.createElement("li");
+                    let reportHealth = document.createElement("li");
+                    reportDamage.textContent =`${selectedEnemy.enemy_name} took ${damage}pts of damage`;
+                    reportHealth.textContent =`${selectedEnemy.enemy_name}'s health is at ${selectedEnemy.health}`;
+                    ul.appendChild(reportDamage);
+                    ul.appendChild(reportHealth);
+            
+                    //update action menu button
+                    btn.textContent = `Continue`;
+                    btn.classList.remove(`attack-action`);
+                    btn.classList.add(`continue-to-enemy`);
+                    console.log(`in !isWon: ` + selectedEnemy.health);
+
+                } 
+            } else {
+                let reportDamage = document.createElement("li");
+                let reportHealth = document.createElement("li");
+                reportDamage.textContent =`${selectedEnemy.enemy_name} took ${damage}pts of damage`;
+                reportHealth.textContent =`${selectedEnemy.enemy_name}'s health is at ${selectedEnemy.health}`;
+                ul.appendChild(reportDamage);
+                ul.appendChild(reportHealth);
+        
+                //update action menu button
+                btn.textContent = `Continue`;
+                btn.classList.remove(`attack-action`);
+                btn.classList.add(`continue-to-enemy`);
+                console.log(`in !isWon: ` + selectedEnemy.health);
+            }
+                console.log(selectedEnemy.health);
+        //Enemy State===============================================
+        } else if (state === `enemy`) {
+
+            this.clearLi();
+
+            this.currentEnemies.forEach(enemy => {
+                const damage = Math.round(enemy.attack - (player.defense/Math.floor((Math.random() * enemy.luck) +1)));
+                player.health -= damage;
+                console.log(player.health);
+
+
+                let reportDamage = document.createElement("li");
+                let reportHealth = document.createElement("li");
+                reportDamage.textContent =`You took ${damage}pts of damage`;
+                reportHealth.textContent = `Your health is at ${player.health}`;
+                ul.appendChild(reportDamage);
+                ul.appendChild(reportHealth);
+            })
+
+            btn.textContent = `Continue`;
+            btn.classList.remove(`continue-to-enemy`);
+            btn.classList.add(`continue-to-main`);
+
+            //Loot State================================================
+        }
+    }
+
+    clearLi() {
+        const lineItemsToRemove = document.querySelectorAll(`li`);
+        lineItemsToRemove.forEach(item => {
+            item.remove();
+        });
+    }
+
+    hideActiveSpellEl() {
+        const activeSpellEl = document.querySelector(`#active-spell`);
+        activeSpellEl.classList.add(`hidden`);
     }
 }
