@@ -22,6 +22,15 @@ router.use("/",frontEndRoutes);
 const enemyRoutes = require('./enemyController');
 router.use("/api/enemies",enemyRoutes);
 
+const characterRoutes = require('./characterController');
+router.use("/api/characters",characterRoutes);
+
+const itemRoutes = require('./itemController');
+router.use("/api/items",itemRoutes);
+
+const spellRoutes = require('./spellController');
+router.use("/api/spells",spellRoutes);
+
 const storyRoutes = require('./storyController');
 router.use("/api/stories",storyRoutes);
 
