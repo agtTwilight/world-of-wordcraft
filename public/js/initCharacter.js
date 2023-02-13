@@ -402,7 +402,7 @@ export class Character {
 }
 
 // fetch the user api, get the specific character data, return it for use
-export const getCharacterData = async () => {
+export const getCharacterData = async (username) => {
     // TODO: make the '1' change to a the current user's id
     const rawData = await fetch("http://localhost:3000/api/users/1", {method: "GET"})
     const newData = await rawData.json();

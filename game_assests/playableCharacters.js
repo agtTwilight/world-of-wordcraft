@@ -71,4 +71,23 @@ const createNewCharacter = async (character_name, userId) => {
         })
 }
 
-module.exports = createNewCharacter
+const test = async () => {
+        const signupObj = {
+                "username":"aaffffd",
+                "password":"password"
+            }
+    
+            const rawUserData = await fetch("http://localhost:3000/api/users/",{
+                method:"POST",
+                body:JSON.stringify(signupObj),
+                headers:{
+                    "Content-Type":"application/json"
+                }
+            })
+            const newUser = await rawUserData.json();
+            const character_name = "test not workiasdfang"
+            
+            await createNewCharacter(character_name, newUser["id"])
+}
+
+module.exports = createNewCharacter;
