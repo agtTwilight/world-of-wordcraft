@@ -1,7 +1,5 @@
-*{
-    font-family: 'Dosis', sans-serif;
-font-family: 'Gentium Book Plus', serif;
-}
+@import "../../node_modules/nes.css/css/nes-core.min.css";
+
 
 .am-btn {
     width: 100%;
@@ -34,7 +32,9 @@ font-family: 'Gentium Book Plus', serif;
     justify-content: center;
 }
 
-
+.character-detail {
+    font-size: 3vh;
+}
 
 /* mrgings on this need to be fixed */
 #game-container {
@@ -113,7 +113,9 @@ font-family: 'Gentium Book Plus', serif;
     align-items: center;
 }
 
-
+#character-details-header {
+    margin: 0;
+}
 
 #character-details {
     background-color: aquamarine;
