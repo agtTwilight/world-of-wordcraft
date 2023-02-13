@@ -14,9 +14,9 @@ router.get("/", (req, res) => {
 
 // post character
 router.post("/", (req, res) => {
-        if (!req.session.userId) {
-                return res.status(403).json({ msg: "login first post" })
-        }
+        // if (!req.session.userId) {
+        //         return res.status(403).json({ msg: "login first post" })
+        // }
         console.log(req.body);
         Character.create({
                 character_name: req.body.character_name,
@@ -33,7 +33,7 @@ router.post("/", (req, res) => {
                 level: req.body.level,
                 spell_point: req.body.spell_point,
                 gold: req.body.gold,
-                UserId: req.session.userId
+                UserId: req.body.userId
         }).then(characterData => {
                 res.json(characterData)
         }).catch(err => {

@@ -28,6 +28,18 @@ router.use("/api/characters",characterRoutes);
 const itemRoutes = require('./itemController');
 router.use("/api/items",itemRoutes);
 
+const inventoryRoutes = require('./inventoryController');
+router.use("/api/inventories",inventoryRoutes);
+
+const inventoryItemsRoutes = require('./inventoryItemController');
+router.use("/api/inventoryItems",inventoryItemsRoutes);
+
+const spellbookRoutes = require('./spellbookController');
+router.use("/api/spellbooks",spellbookRoutes);
+
+const spellbookSpellsRoutes = require('./spellbookSpellsController');
+router.use("/api/spellbookSpells",spellbookSpellsRoutes);
+
 const spellRoutes = require('./spellController');
 router.use("/api/spells",spellRoutes);
 
