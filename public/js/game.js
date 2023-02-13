@@ -144,7 +144,6 @@ body.addEventListener(`click`, function(e) {
     const pauseBtnEl = e.target.closest(`#pause-button`);
 
     if(!menuEl && !pauseBtnEl){
-        console.log(`test`);
         pauseMenu.setAttribute(`style`, `left: -19vw; transition: .5s`);
     }
 });
