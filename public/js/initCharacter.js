@@ -149,6 +149,8 @@ export class Character {
         } 
     }
 
+    
+
     createSpell(is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit){
         // construct new spell obj
         this.Spellbook.Spells.push({is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit})
