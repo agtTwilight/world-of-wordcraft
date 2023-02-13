@@ -93,7 +93,7 @@ ul {
 #home-container {
         align-items: center;
         border: solid blue 1px;
-        height: 80%;
+        height: 95%;
 }
 
 #div {
@@ -109,7 +109,6 @@ ul {
 
 #character-traits {
         border: solid salmon 1px;
-        margin-right: 30px;
 }
 
 #game-btn {
@@ -118,3 +117,6 @@ ul {
         margin-bottom: 10px;
 }
 
+.red-text{
+        color: red
+}

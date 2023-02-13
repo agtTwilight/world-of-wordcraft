@@ -1,17 +1,19 @@
 //you were about to tahe actionMenuBtn1 query selector and place it in the Game class so that you can create a progress the story function.
 
-//Query Selectors
+//HUD variables
 const hud = document.querySelector(`#hud`);
 const actionMenuBtn1 = document.querySelector(`#am-btn-1`);
 const actionMenuBtn2 = document.querySelector(`#am-btn-2`);
 const actionMenuBtn3 = document.querySelector(`#am-btn-3`);
 const actionMenuBtn4 = document.querySelector(`#am-btn-4`);
 const allActionMenuButtons = [actionMenuBtn1, actionMenuBtn2, actionMenuBtn3, actionMenuBtn4];
+const dataStorage = document.querySelector("#data-storage")
 
-//Pause menu buttons
+
+//Pause menu variables
 const pauseBtn = document.querySelector(`.pause-btn`);
 const pauseMenu = document.querySelector(`#pause-menu`)
-const dataStorage = document.querySelector("#data-storage")
+const characterDetails = document.querySelector(`#character-details-list`);
 
 
 //Imported Classes
@@ -121,8 +123,18 @@ hud.addEventListener(`click`, function(e) {
 // })
 
 pauseBtn.addEventListener(`click`, function() {
-    console.log(`ouch`);
-    pauseMenu.setAttribute(`style`, `left: 0px; transition: .5s`)
+    pauseMenu.setAttribute(`style`, `left: 0px; transition: .5s`);
+    const stats = playerCharacter.getStats();
+    const keys = Object.keys(stats);
+
+    console.log(stats)
+
+    Object.values(stats).forEach((stat, i) => {
+        const li = document.createElement(`li`);
+        li.setAttribute(`class`, `character-detail`)
+        li.textContent = `${keys[i]}: ${stat}`;
+        characterDetails.appendChild(li);
+    });
 });
 
 
@@ -134,7 +146,7 @@ const clearButtons = (buttons) => {
     });
 }
 
-//basicall acts as a main enu function
+//basically acts as a main menu function
 const resetButtons = () => {
     actionMenuBtn1.textContent = `Proceed Onward`;
     actionMenuBtn1.classList.add(`continue-action`);

@@ -1,18 +1,22 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;600&family=Gentium+Book+Plus:wght@400;700&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="./node_modules/nes.css/css/nes.min.css">
+<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+<link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
 <link rel="stylesheet" href="/css/game.css">
 <section id="game-container" class="container">
     <section id="pause-menu">
-        <div id="character-details">Character Details</div>
+        <div id="character-details">
+            <p>Character Details</p>
+            <ul id="character-details-list"></ul>
+        </div>
         <button id="save" class="pause-menu-btn">Save</button>
         <button id="save-and-exit" class="pause-menu-btn">Save & Exit</button>
         <button id="exit" class="pause-menu-btn">Exit</button>
     </section>
     <section id="hud" class="row">
         <div id="action-menu" class="col-2">
-            <header id="am-header">Actions Menu</header>
+            <header id="am-header">
+                <p>Actions Menu</p>
+            </header>
             <button id="am-btn-1" class="am-btn"></button>
             <button id="am-btn-2" class="am-btn"></button>
             <button id="am-btn-3" class="am-btn"></button>

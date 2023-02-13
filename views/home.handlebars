@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" href="/css/home.css">
 
-<section id="login" class="tavern row justify-content-between">
+<section id="login" class="tavern row justify-content-evenly">
         <section id="log-container" class="col-3 home-box">
                 <img id= "log-background" src="../assets/log-banner-pixel.png" alt="pixel-banner">
                 <h1 class="log-header">JOURNAL</h1>
@@ -13,21 +13,37 @@
                                 <li>where the logs go</li>
                                 <li>where the logs go</li>
                                 <li>where the logs go</li>
-
                         </ul>
                 </section>
         </section>
         <section class="home-box col-8 blur border1">
-                <h2>Character</h2>
-                <section id="home-container" class="row d-flex justify-content-around">
-                        <div id="div" class="col-5 d-flex justify-content-between">
+                <section id="home-container" class="row d-flex justify-content-evenly">
+                        <div id="div" class="col-5 justify-content-between">
                                 <img id="character-sprite" src="/assets/character/main-character.png" alt="protagonist">
                         </div>
-                        <div class="nes-container is-rounded" style="background-color:white;>
-                        <ul id="character-traits" class="col-5 nes-list is-circle">
-                                <li>where character traits will go</li>
-                        </ul>
+                    <div id="character-traits" class="col-5 row d-flex nes-container is-rounded">
+                        <div id="health-container" class="nes-container is-rounded" style="background-color:white;">
+                            <p id="healthDisplay" class="red-text">HP</p>
                         </div>
+                        <div id="magic-container" class="nes-container is-rounded" style="background-color:white;">
+                            <p id="magicDisplay">MAGIC</p>
+                        </div>
+                        <div id="resistance-container" class="nes-container is-rounded" style="background-color:white;">
+                            <p id="resistanceDisplay">RESISTANCE</p>
+                        </div>
+                        <div id="con-container" class="nes-container is-rounded" style="background-color:white;">
+                            <p id="conDisplay">CON</p>
+                        </div>
+                        <div id="cha-container" class="nes-container is-rounded" style="background-color:white;">
+                            <p id="chaDisplay">CHA</p>
+                        </div>
+                        <div id="int-container" class="nes-container is-rounded" style="background-color:white;">
+                            <p id="intDisplay">INT</p>
+                        </div>
+                        <div id="int-container" class="nes-container is-rounded" style="background-color:white;">
+                            <p id="intDisplay">INT</p>
+                        </div>
+                    </div>
                 </section>
         </section>
                         <div class="d-flex justify-content-center">
