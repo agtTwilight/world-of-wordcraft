@@ -17,7 +17,7 @@ const seedInventoryItems = require("./game/inventoryItem-seeds");
 const seedSpellbookSpells = require("./game/spellbookSpell-seeds");
 const seedSpellbooks = require("./game/spellbook-seeds");
 const seedSpells = require("./game/spell-seeds");
-// const seedForge = require("./game/forge-seeds");
+const seedForge = require("./game/forge-seeds");
 const seedMobs = require("./game/mob-seeds");
 // const seedShop = require("./game/shop-seeds");
 // const seedSpells = require("./game/spell-seeds");
@@ -76,8 +76,8 @@ const seedAll = async () => {
 
     // Uncomment the below seeds once they are good to go - you may need to change the order in which they are placed relative to seeding order!
 
-    // await seedForge();
-    // console.log("\n----- FORGE SEEDED -----\n");
+    await seedForge();
+    console.log("\n----- FORGE SEEDED -----\n");
     await seedStory();
     console.log("\n----- STORY SEEDED -----\n");
 

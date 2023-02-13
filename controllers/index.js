@@ -34,4 +34,7 @@ router.use("/api/spells",spellRoutes);
 const storyRoutes = require('./storyController');
 router.use("/api/stories",storyRoutes);
 
+const forgeRoutes = require('./forgeController');
+router.use("/api/forge",forgeRoutes);
+
 module.exports = router;

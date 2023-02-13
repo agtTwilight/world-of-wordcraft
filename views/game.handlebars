@@ -4,18 +4,6 @@
 
 <link rel="stylesheet" href="/css/game.css">
 <section id="game-container" class="container">
-    {{!-- <div id="game-window-header">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown button
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-        </div>
-    </div> --}}
     <section id="pause-menu">
         <div id="character-details">Character Details</div>
         <button id="save" class="pause-menu-btn">Save</button>
@@ -25,14 +13,15 @@
     <section id="hud" class="row">
         <div id="action-menu" class="col-2">
             <header id="am-header">Actions Menu</header>
-            <button id="am-btn-1" class="am-btn temp-1"></button>
-            <button id="am-btn-2" class="am-btn temp-2"></button>
-            <button id="am-btn-3" class="am-btn temp-3">Inventory</button>
-            <button id="am-btn-4" class="am-btn temp-4">Spellbook</button>
+            <button id="am-btn-1" class="am-btn"></button>
+            <button id="am-btn-2" class="am-btn"></button>
+            <button id="am-btn-3" class="am-btn"></button>
+            <button id="am-btn-4" class="am-btn"></button>
             <button id="am-btn-5" class="am-btn pause-btn">Menu</button>
         </div>
         <div id="story-box" class="col-10">
                 <ul id="data-storage"></ul>
+                <div id="active-spell" class="hidden"></div>
         </div>
     </section>
 </section>

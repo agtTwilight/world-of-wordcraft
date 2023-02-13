@@ -14,6 +14,15 @@ font-family: 'Gentium Book Plus', serif;
     justify-content: center;
 }
 
+.word-bench {
+    width: 100%;
+    height: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
 .pause-menu-btn {
     width: 75%;
     height: 8%;
@@ -76,6 +85,13 @@ font-family: 'Gentium Book Plus', serif;
     border: solid black 1px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    position: relative;
+}
+
+#active-spell {
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 #pause-menu {

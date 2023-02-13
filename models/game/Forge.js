@@ -15,7 +15,16 @@ Forge.init({
     magic_type: {
         type: DataTypes.STRING,
         allowNull:false,
+    },
+    power_points: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    frequency: {
+        type: DataTypes.DECIMAL,
+        allowNull: false
     }
+
 },{
     sequelize
 });
