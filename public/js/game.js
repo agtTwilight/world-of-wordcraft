@@ -21,8 +21,7 @@ import * as Enemy from "./initEnemy.js";
 
 //Class Objects
 const playerCharacter = await Character.getCharacterData()
-console.log(playerCharacter)
-playerCharacter.getKeywords(`fire`);
+
 const gameController = new Game;
 
 //Init Game Landing HUD
@@ -36,6 +35,11 @@ actionMenuBtn3.textContent = `Inventory`;
 actionMenuBtn3.classList.add(`inventory-action`);
 actionMenuBtn4.textContent = `Forge`;
 actionMenuBtn4.classList.add(`forge-action`);
+
+//Testing functions
+// console.log(playerCharacter)
+// playerCharacter.getKeywords(`fire`);
+// playerCharacter.buildSpell(dataStorage, actionMenuBtn1, actionMenuBtn2, actionMenuBtn3, `fire`);
 
 
 
@@ -104,13 +108,8 @@ hud.addEventListener(`click`, function(e) {
     } else if(forgeType) {
         clearButtons(allActionMenuButtons);
         playerCharacter.setSpellType(dataStorage, actionMenuBtn1, actionMenuBtn2, actionMenuBtn3);
-    }else if(forgeBuild) {
+    }else if(forgeBuild) {}
 
-    } else if(forgeCreate) {
-    
-    }else if(forgeUpgrade) {
-
-    }
 })
 
 // inventoryBtn.addEventListener("click", async() =>{
