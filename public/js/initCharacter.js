@@ -24,6 +24,10 @@ export class Character {
         this.Spellbook = Spellbook;
         this.activeSpell;
         this.storyboxMode = `null`;
+        this.actionMenuBtn1 = document.querySelector(`#am-btn-1`);
+        this.actionMenuBtn2 = document.querySelector(`#am-btn-2`);
+        this.actionMenuBtn3 = document.querySelector(`#am-btn-3`);
+        this.actionMenuBtn4 = document.querySelector(`#am-btn-4`);
     } 
     
     attack(ul){
@@ -175,6 +179,7 @@ export class Character {
     //need to clear buttons of previous classes
     forgeScreen(ul, backBtn, createBtn, upgradeBtn) {
         this.clearLi();
+        this.clearButtons([backBtn, createBtn, upgradeBtn]);
         
         //Forge greeting
         const li = document.createElement("li");
@@ -193,6 +198,8 @@ export class Character {
     //need to clear buttons of previous classes
     setSpellType(ul, backBtn, createBtn, spellbookBtn) {
         this.clearLi();
+        this.clearButtons([backBtn, createBtn, spellbookBtn]);
+
 
         const typeGreetingLi = document.createElement(`li`);
         const fireButton = document.createElement("button");
@@ -221,8 +228,8 @@ export class Character {
         })
 
         fireButton.addEventListener(`click`, function(){
-            character.buildSpell(ul, backBtn, createBtn `fire`);
-        });
+            character.buildSpell(ul, backBtn, createBtn, spellbookBtn, `fire`);
+        }, {once: true});
         waterButton.addEventListener(`click`, function(){
         });
         airButton.addEventListener(`click`, function(){
@@ -239,40 +246,92 @@ export class Character {
     }
 
     //need to clear buttons of previous classes
-    async buildSpell(ul, backBtn, createBtn, type) {
+    async buildSpell(ul, backBtn, createBtn, callbackBtn, type) {
         this.clearLi();
+        this.clearButtons([backBtn, createBtn]);
+
 
         const magicWords = await this.getKeywords(type);
 
-        const li = document.createElement(`li`);
-        const formContainer = document.createElement(`li`);
-        const form = document.createElement(`form`);
+        const nameLi = document.createElement(`li`);
+        const spellLi = document.createElement(`li`);
+        const taContainer = document.createElement(`li`);
+        const nameContainer = document.createElement(`li`);
+        const input = document.createElement(`input`);
         const textArea = document.createElement(`textarea`);
+        const character = this;
+
         
         //build story box format
-        li.textContent(`Write your spell here:`);
+        nameLi.textContent =`Write your spell here:`;
+        spellLi.textContent =`Name your spell here:`;
         textArea.setAttribute(`id`, `word-smithing`);
         textArea.setAttribute(`class`, `word-bench`);
-        form.appendChild(textArea);
-        ul.appendChild(li);
-        form.appendChild(textArea);
-        formContainer.appendChild(form);
+        ul.appendChild(nameLi);
+        nameContainer.appendChild(input);
+        ul.appendChild(nameContainer);
+        ul.appendChild(spellLi);
+        taContainer.appendChild(textArea);
         ul.appendChild(taContainer);
 
+        backBtn.textContent = `Back`;
+        backBtn.classList.add(`forge-action`);
+        createBtn.textContent = `Forge Spell`;
+        createBtn.classList.add(`forge-build-btn`);
+
         //set new classes on btns
-        
+        createBtn.addEventListener(`click`, function(){
+            const spellname = input.value;
+            let spellString = textArea.value;
+            let matchedWords = [];
+            spellString = spellString.toLowerCase();
+            spellString = spellString.replace(/[^a-zA-Z ]/g, " ")
+            let spellWords = spellString.split(` `);
+            spellWords = spellWords.filter(index => index != ``);
+            let powerLevel = 1;
+            console.log(spellWords);
+            
+            magicWords.forEach(word => {
+
+                if(spellWords.indexOf(word.keyword) != -1){
+                    powerLevel += word.power_points;
+                    matchedWords.push(word.keyword);
+                    console.log(word.keyword);
+                    console.log(powerLevel);
+                }
+            })
+
+            character.createSpell(true, spellname, type, magicWords, matchedWords, powerLevel, 1, 3, 0, 1, 0);
+
+            character.clearLi();
+            nameLi.textContent = `You created the spell ${spellname}`;
+            ul.appendChild(nameLi);
+
+            backBtn.classList.remove(`forge-action`);
+            backBtn.classList.add(`continue-action`);
+            backBtn.textContent = `Proceed Onward`;
+            createBtn.classList.remove(`forge-build-btn`);
+            createBtn.classList.add(`spellbook-action`);
+            createBtn.textContent = `Spellbook`;
+            callbackBtn.classList.remove(`spellbook-action`);
+            callbackBtn.classList.add(`inventory-action`)
+            callbackBtn.textContent = `Inventory`;
+            const btn4 = document.querySelector(`#am-btn-4`);
+            btn4.classList.add(`forge-action`);
+            btn4.textContent = `Forge`;
+        }, {once: true});
     }
 
-    // createSpell(is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit){
-    //     // construct new spell obj
-    //     this.Spellbook.Spells.push({is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit})
-    // }
+    createSpell(is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit){
+        // construct new spell obj
+        this.Spellbook.Spells.push({is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit})
+    }
     
-    updateSpell(is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit){
+    updateSpell(is_updated,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit){
         for (const i in this.Spellbook.Spells) {
             if (this.Spellbook.Spells[i].spell_name === spell_name) {
                 const id = this.Spellbook.Spells[i].id
-                this.Spellbook.Spells[i] = {is_new,id,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit}
+                this.Spellbook.Spells[i] = {is_updated,id,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit}
                 console.log(this.Spellbook.Spells)
             }
         }
@@ -302,6 +361,24 @@ export class Character {
         const activeSpellEl = document.querySelector(`#active-spell`);
         activeSpellEl.classList.add(`hidden`);
     }
+
+    clearButtons = (buttons) => {
+        buttons.forEach(btn => {
+            btn.setAttribute(`class`, `am-btn`);
+            btn.textContent = ``;
+        });
+    }
+    
+    // resetButtons = (btn1, btn2, btn3, btn4,) => {
+    //     btn1.textContent = `Proceed Onward`;
+    //     btn1.classList.add(`continue-action`);
+    //     btn2.textContent = `SpellBook`;
+    //     btn2.classList.add(`spellbook-action`);
+    //     btn3.textContent = `Inventory`;
+    //     btn3.classList.add(`inventory-action`);
+    //     btn4.textContent = `Forge`;
+    //     btn4.classList.add(`forge-action`);
+    // }
 }
 
 // fetch the user api, get the specific character data, return it for use

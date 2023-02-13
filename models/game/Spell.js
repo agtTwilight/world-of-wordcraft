@@ -4,6 +4,8 @@ const sequelize = require("../../config/connection");
 // TODO: remove instance of character with the current files name
 class Spell extends Model {}
 
+//need to add an column for storing the users inputed string
+
 Spell.init(
     {
         // example data value

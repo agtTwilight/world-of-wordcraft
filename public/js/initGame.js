@@ -38,9 +38,10 @@ export class Game {
         })
         .then(data => {
             for (let i = 0; i < campaignLength; i++) {
-                const storyNumber = Math.floor(Math.random() * data.length) + 1;
+                const storyNumber = Math.floor(Math.random() * data.length);
                 this.storyList.push(storyNumber);
                 this.stories.push(data[storyNumber]);
+                console.log(storyNumber);
                 console.log(this.stories);
             }
             if(this.currentEnemies[0] === undefined){
