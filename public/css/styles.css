@@ -1,5 +1,27 @@
 @import "../../node_modules/nes.css/css/nes-core.min.css";
 
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+        scrollbar-width: auto;
+        scrollbar-color: #f8b352 #422b21;
+      }
+    
+      /* Chrome, Edge, and Safari */
+      *::-webkit-scrollbar {
+        width: 10px;
+      }
+    
+      *::-webkit-scrollbar-track {
+        background: #422b21;
+      }
+    
+      *::-webkit-scrollbar-thumb {
+        background-color: #f8b352;
+        border-radius: 10px;
+        border: 2px none #ffffff;
+      }
+
 :root{
         margin: 0;
         padding: 0;
@@ -76,13 +98,8 @@ ul {
 }
 .home-box {
         height: 85%;
-        border-radius: 30px;
         margin: 20px;
         padding-top: 2%;
-}
-
-.border1{
-        border: solid black 3px;
 }
 
 .blur{
@@ -92,13 +109,7 @@ ul {
 
 #home-container {
         align-items: center;
-        border: solid blue 1px;
         height: 95%;
-}
-
-#div {
-        border: solid saddlebrown 1px;
-        margin-left: 30px;
 }
 
 #character-sprite {
@@ -108,13 +119,13 @@ ul {
 }
 
 #character-traits {
-        border: solid salmon 1px;
+        display: flex;
+        height: 95%;
 }
 
-#game-btn {
-        width: 15%;
-        margin: 0 auto;
-        margin-bottom: 10px;
+.stats{
+        width: 90%;
+        justify-content: center;
 }
 
 .red-text{
