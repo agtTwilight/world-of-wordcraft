@@ -52,6 +52,8 @@ hud.addEventListener(`click`, function(e) {
     //Forge event listeners
     const forgeAct = e.target.closest(`.forge-action`);
     const forgeBack = e.target.closest(`.forge-back-btn`);
+    const forgeType =e.target.closest(`.forge-type-btn`);
+    const forgeBuild =e.target.closest(`.forge-build-btn`);
     const forgeCreate = e.target.closest(`.forge-create-btn`);
     const forgeUpgrade = e.target.closest(`.forge-upgrade-btn`);
 
@@ -99,17 +101,14 @@ hud.addEventListener(`click`, function(e) {
     } else if(forgeBack) {
         clearButtons(allActionMenuButtons);
         resetButtons();
-        // if(forgeBack.layer === `main`){
-        //     clearButtons(allActionMenuButtons);
-        //     resetButtons();
-        // } else {
-        //     clearButtons(allActionMenuButtons);
-        //     playerCharacter.forgeScreen(dataStorage, actionMenuBtn1, actionMenuBtn2, actionMenuBtn3)
-        // }
-    } else if(forgeCreate) {
+    } else if(forgeType) {
         clearButtons(allActionMenuButtons);
-        playerCharacter.createSpell(dataStorage, actionMenuBtn1, actionMenuBtn2, actionMenuBtn3);
-    } else if(forgeUpgrade) {
+        playerCharacter.setSpellType(dataStorage, actionMenuBtn1, actionMenuBtn2, actionMenuBtn3);
+    }else if(forgeBuild) {
+
+    } else if(forgeCreate) {
+    
+    }else if(forgeUpgrade) {
 
     }
 })
@@ -136,6 +135,7 @@ const clearButtons = (buttons) => {
     });
 }
 
+//basicall acts as a main enu function
 const resetButtons = () => {
     actionMenuBtn1.textContent = `Proceed Onward`;
     actionMenuBtn1.classList.add(`continue-action`);

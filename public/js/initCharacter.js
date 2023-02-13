@@ -169,8 +169,10 @@ export class Character {
 
         const forgeWords = indices.map(index => keywords[index]);
         console.log(forgeWords);
+        return forgeWords;
     }
 
+    //need to clear buttons of previous classes
     forgeScreen(ul, backBtn, createBtn, upgradeBtn) {
         this.clearLi();
         
@@ -182,20 +184,83 @@ export class Character {
         //Forge action menu setup
         backBtn.classList.add(`forge-back-btn`);
         backBtn.textContent = `Back`;
-        createBtn.classList.add(`forge-create-btn`);
+        createBtn.classList.add(`forge-type-btn`);
         createBtn.textContent = `Create Spell`;
         upgradeBtn.classList.add(`forge-upgrade-btn`);
         upgradeBtn.textContent = `Upgrade Spell`;
     }
 
-    createSpell(ul, backBtn, createBtn, spellbookBtn) {
+    //need to clear buttons of previous classes
+    setSpellType(ul, backBtn, createBtn, spellbookBtn) {
+        this.clearLi();
 
-        backBtn.classList.add(`forge-back-btn`);
+        const typeGreetingLi = document.createElement(`li`);
+        const fireButton = document.createElement("button");
+        const waterButton = document.createElement("button");
+        const airButton = document.createElement("button");
+        const earthButton = document.createElement("button");
+        const character = this;
+        
+        //Set element attributes
+        typeGreetingLi.textContent = `Please select your spell's magic type:`
+        fireButton.textContent = `Fire`;
+        waterButton.textContent = `Water`;
+        airButton.textContent = `Air`;
+        earthButton.textContent = `Earth`;
+        fireButton.classList.add = `fire-type`;
+        waterButton.classList.add = `water-type`;
+        airButton.classList.add = `air`;
+        earthButton.classList.add = `Earth`;
+        
+        //Append elements
+        const appendingArray = [typeGreetingLi, fireButton, waterButton, airButton, earthButton];
+        appendingArray.forEach(element => {
+            const li = document.createElement(`li`);
+            li.appendChild(element);
+            ul.appendChild(li);
+        })
+
+        fireButton.addEventListener(`click`, function(){
+            character.buildSpell(ul, backBtn, createBtn `fire`);
+        });
+        waterButton.addEventListener(`click`, function(){
+        });
+        airButton.addEventListener(`click`, function(){
+        });
+        earthButton.addEventListener(`click`, function(){
+        });
+        
+        backBtn.classList.add(`forge-action`);
         backBtn.textContent = `Back`;
-        createBtn.classList.add(`forge-create-btn`);
+        createBtn.classList.add(`forge-build-btn`);
         createBtn.textContent = `Forge Spell`;
         spellbookBtn.classList.add(`spellbook-action`)
         spellbookBtn.textContent = `Spellbook`;
+    }
+
+    //need to clear buttons of previous classes
+    async buildSpell(ul, backBtn, createBtn, type) {
+        this.clearLi();
+
+        const magicWords = await this.getKeywords(type);
+
+        const li = document.createElement(`li`);
+        const formContainer = document.createElement(`li`);
+        const form = document.createElement(`form`);
+        const textArea = document.createElement(`textarea`);
+        
+        //build story box format
+        li.textContent(`Write your spell here:`);
+        textArea.setAttribute(`id`, `word-smithing`);
+        textArea.setAttribute(`class`, `word-bench`);
+        form.appendChild(textArea);
+        ul.appendChild(li);
+        form.appendChild(textArea);
+        formContainer.appendChild(form);
+        ul.appendChild(taContainer);
+
+        //set new classes on btns
+        
     }
 
     // createSpell(is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit){

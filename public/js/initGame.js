@@ -252,8 +252,6 @@ export class Game {
             btn.textContent = `Continue`;
             btn.classList.remove(`continue-to-enemy`);
             btn.classList.add(`continue-to-main`);
-
-            //Loot State================================================
         }
     }
 
