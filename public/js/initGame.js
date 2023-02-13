@@ -170,6 +170,7 @@ export class Game {
     combat (enemyId, player, btn, ul, state) {
         this.hideActiveSpellEl();
         
+
         let selectedEnemy = this.currentEnemies.filter(enemy => enemy.id === enemyId);
         selectedEnemy = selectedEnemy[0];
 
@@ -229,6 +230,7 @@ export class Game {
                 btn.classList.add(`continue-to-enemy`);
                 console.log(`in !isWon: ` + selectedEnemy.health);
             }
+
                 console.log(selectedEnemy.health);
         //Enemy State===============================================
         } else if (state === `enemy`) {
@@ -239,7 +241,6 @@ export class Game {
                 const damage = Math.round(enemy.attack - (player.defense/Math.floor((Math.random() * enemy.luck) +1)));
                 player.health -= damage;
                 console.log(player.health);
-
 
                 let reportDamage = document.createElement("li");
                 let reportHealth = document.createElement("li");
