@@ -1,8 +1,3 @@
-/* *{
-        font-family: 'Dosis', sans-serif;
-font-family: 'Gentium Book Plus', serif;
-} */
-
 h2 {
         text-align: center;
         color: #5EB1BF;
@@ -12,6 +7,6 @@ input {
 }
 
 #signup-btn {
-        width: 15%;
+        width: fit-content;
         margin: 0 auto;
 }
