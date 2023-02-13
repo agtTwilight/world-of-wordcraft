@@ -131,6 +131,7 @@ pauseBtn.addEventListener(`click`, function() {
 
     Object.values(stats).forEach((stat, i) => {
         const li = document.createElement(`li`);
+        li.setAttribute(`class`, `character-detail`)
         li.textContent = `${keys[i]}: ${stat}`;
         characterDetails.appendChild(li);
     });
