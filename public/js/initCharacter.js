@@ -30,6 +30,26 @@ export class Character {
         this.actionMenuBtn4 = document.querySelector(`#am-btn-4`);
     } 
     
+    getStats(){
+        const stats = {
+            Name: this.character_name, 
+            Lvl: this.level, 
+            Exp: this.exp, 
+            Gold: this.gold, 
+            Race: this.race, 
+            Alignment: this.alignment, 
+            HP: this.health, 
+            MG: this.magic, 
+            SP: this.spell_point, 
+            Def: this.defense, 
+            Res: this.resistance, 
+            Acc: this.accuracy, 
+            Con: this.constitution, 
+            Luck: this.luck
+        }
+        return stats;
+    }
+
     attack(ul){
         this.storyboxMode = `attack`;
         this.displaySpells(ul);
