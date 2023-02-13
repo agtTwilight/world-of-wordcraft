@@ -10,3 +10,7 @@ document.querySelector("#game-btn").addEventListener("click",e=>{
 
         location.href = "/game"
     })
+
+    // TODO: On user signup:
+    // get character data templates (not from db)
+    // Create three new characters
