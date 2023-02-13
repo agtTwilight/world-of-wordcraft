@@ -63,8 +63,10 @@ Spellbook.belongsToMany(Spell, {through: SpellbookSpell});
 
 //Spell and forge association
 //Might need to add a inventory like table for keywords list
-Spell.hasMany(Forge);
-Forge.belongsTo(Spell);
+const SharedWords = sequelize.define('SharedWords', {}, { timestamps: false })
+Spell.belongsToMany(Forge, {through: SharedWords});
+Forge.belongsToMany(Spell, {through: SharedWords});
+
 
 //Enemy mob and story assocations
 
@@ -86,11 +88,12 @@ module.exports = {
     Forge,
     Inventory,
     Item,
-    Mob,
     Shop,
     Spell,
     Spellbook,
     Story,
+    Mob,
     SpellbookSpell,
+    SharedWords,
     InventoryItem
 };

@@ -836,18 +836,6 @@ const forgeData = [
                 frequency: 0.1
         },
         {
-                keyword: "they",
-                magic_type: "neutral",
-                power_points: 1,
-                frequency: 0.1
-        },
-        {
-                keyword: "will",
-                magic_type: "neutral",
-                power_points: 1,
-                frequency: 0.1
-        },
-        {
                 keyword: "won't",
                 magic_type: "neutral",
                 power_points: 1,

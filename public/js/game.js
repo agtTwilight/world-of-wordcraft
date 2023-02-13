@@ -4,8 +4,9 @@
 const hud = document.querySelector(`#hud`);
 const actionMenuBtn1 = document.querySelector(`#am-btn-1`);
 const actionMenuBtn2 = document.querySelector(`#am-btn-2`);
-const actionMenuBtn3 = document.querySelector(`#am-btn-1`);
-const actionMenuBtn4 = document.querySelector(`#am-btn-2`);
+const actionMenuBtn3 = document.querySelector(`#am-btn-3`);
+const actionMenuBtn4 = document.querySelector(`#am-btn-4`);
+const allActionMenuButtons = [actionMenuBtn1, actionMenuBtn2, actionMenuBtn3, actionMenuBtn4];
 
 //Pause menu buttons
 const pauseBtn = document.querySelector(`.pause-btn`);
@@ -33,12 +34,22 @@ const playerCharacter = await Character.getCharacterData()
 console.log(playerCharacter)
 const gameController = new Game;
 
+//Init Game Landing HUD
 gameController.gameInit(2);
 gameController.storyboxInit(dataStorage);
 actionMenuBtn1.textContent = `Continue`;
 actionMenuBtn1.classList.add(`continue-action`);
+actionMenuBtn2.textContent = `SpellBook`;
+actionMenuBtn2.classList.add(`spellbook-action`);
+actionMenuBtn3.textContent = `Inventory`;
+actionMenuBtn3.classList.add(`inventory-action`);
+actionMenuBtn4.textContent = `Forge`;
+actionMenuBtn4.classList.add(`forge-action`);
+
+
 
 hud.addEventListener(`click`, function(e) {
+    //Combat event listeners
     const continueAct = e.target.closest(`.continue-action`);
     const continueToEnemyTurn = e.target.closest(`.continue-to-enemy`);
     const continueToMain = e.target.closest(`.continue-to-main`);
@@ -46,6 +57,10 @@ hud.addEventListener(`click`, function(e) {
     const attackAct = e.target.closest(`.attack-action`);
     const spellAttackAct = e.target.closest(`.spell-attack-btn`);
     const attackEnemyAct = e.target.closest(`.attack-enemy-btn`);
+
+    //Forge event listeners
+    const forgeAct = e.target.closest(`.forge-action`);
+
     const inventoryAct = e.target.closest(`.inventory-action`);
     const useAct = e.target.closest(`.use-action`);
     const libraryAct = e.target.closest(`.library-action`);
@@ -59,7 +74,7 @@ hud.addEventListener(`click`, function(e) {
     if(continueAct) {
         gameController.progressStory(dataStorage, actionMenuBtn1);
 
-    //Combat coordination
+    //Combat Events
     } else if(attackAct) {
 
         //begin attack loop
@@ -81,6 +96,11 @@ hud.addEventListener(`click`, function(e) {
     } else if(continueToLoot) {
         //post combat screen where you get loot and level up
         gameController.lootScreen(playerCharacter, dataStorage, actionMenuBtn1);
+    
+    //Forge Events
+    } else if(forgeAct){
+        clearButtons(allActionMenuButtons);
+        playerCharacter.forgeScreen(dataStorage, actionMenuBtn1, actionMenuBtn2, actionMenuBtn3)
     }
 })
 
@@ -96,3 +116,22 @@ pauseBtn.addEventListener(`click`, function() {
     console.log(`ouch`);
     pauseMenu.setAttribute(`style`, `left: 0px; transition: .5s`)
 });
+
+
+//Utility Functions=============================================
+const clearButtons = (buttons) => {
+    buttons.forEach(btn => {
+        btn.setAttribute(`class`, `am-btn`)
+    });
+}
+
+const resetButtons = () => {
+    actionMenuBtn1.textContent = `Continue`;
+    actionMenuBtn1.classList.add(`continue-action`);
+    actionMenuBtn2.textContent = `SpellBook`;
+    actionMenuBtn2.classList.add(`spellbook-action`);
+    actionMenuBtn3.textContent = `Inventory`;
+    actionMenuBtn3.classList.add(`inventory-action`);
+    actionMenuBtn4.textContent = `Forge`;
+    actionMenuBtn4.classList.add(`forge-action`);
+}

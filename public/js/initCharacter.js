@@ -149,7 +149,19 @@ export class Character {
         } 
     }
 
-    
+    getKeywords() {
+
+    }
+
+    forgeScreen(ul, backBtn, createBtn, upgradeBtn) {
+        //Forge greeting
+        const li = document.createElement("li");
+        li.textContent = `May the Forge be with you.`;
+        ul.appendChild(li);
+
+        //Forge action menu setup
+        backBtn.classList.add()
+    }
 
     createSpell(is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit){
         // construct new spell obj
