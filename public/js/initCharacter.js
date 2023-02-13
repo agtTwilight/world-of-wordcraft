@@ -149,24 +149,59 @@ export class Character {
         } 
     }
 
-    getKeywords() {
+    async getKeywords (type) {
+        const keywordsData = await fetch(`http://localhost:3000/api/forge/type/${type}`);
+        
+        //eventually we'll divide the array based on frequency value and type, that way we can pull a specific amout of each type and a porpotion of them based on thier frequency.
+        const keywords = await keywordsData.json();
+        
+        let indices = [];
 
+        //get array of random numbers
+        for (let i = 0; i < 50; i++) {
+            const number = Math.floor(Math.random() * keywords.length);
+            if(indices.indexOf(number) === -1){
+                indices.push(number);
+            } else {
+                i--;
+            }
+        }
+
+        const forgeWords = indices.map(index => keywords[index]);
+        console.log(forgeWords);
     }
 
     forgeScreen(ul, backBtn, createBtn, upgradeBtn) {
+        this.clearLi();
+        
         //Forge greeting
         const li = document.createElement("li");
         li.textContent = `May the Forge be with you.`;
         ul.appendChild(li);
 
         //Forge action menu setup
-        backBtn.classList.add()
+        backBtn.classList.add(`forge-back-btn`);
+        backBtn.textContent = `Back`;
+        createBtn.classList.add(`forge-create-btn`);
+        createBtn.textContent = `Create Spell`;
+        upgradeBtn.classList.add(`forge-upgrade-btn`);
+        upgradeBtn.textContent = `Upgrade Spell`;
     }
 
-    createSpell(is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit){
-        // construct new spell obj
-        this.Spellbook.Spells.push({is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit})
+    createSpell(ul, backBtn, createBtn, spellbookBtn) {
+
+        backBtn.classList.add(`forge-back-btn`);
+        backBtn.textContent = `Back`;
+        createBtn.classList.add(`forge-create-btn`);
+        createBtn.textContent = `Forge Spell`;
+        spellbookBtn.classList.add(`spellbook-action`)
+        spellbookBtn.textContent = `Spellbook`;
     }
+
+    // createSpell(is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit){
+    //     // construct new spell obj
+    //     this.Spellbook.Spells.push({is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit})
+    // }
     
     updateSpell(is_new,spell_name,magic_type,magic_words,matched_words,power,target,magic_cost,use,level,char_limit){
         for (const i in this.Spellbook.Spells) {

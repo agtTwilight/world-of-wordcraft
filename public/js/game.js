@@ -13,16 +13,6 @@ const pauseBtn = document.querySelector(`.pause-btn`);
 const pauseMenu = document.querySelector(`#pause-menu`)
 const dataStorage = document.querySelector("#data-storage")
 
-//variable buttons
-const continueBtn = document.querySelector(`button[subclass = 'continue']`);
-const attackBtn = document.querySelector(`button[subclass = 'attack']`);
-const inventoryBtn = document.querySelector(`button[subclass = 'inventory']`);
-const useBtn = document.querySelector(`button[subclass = 'use']`);
-const spellbookBtn = document.querySelector(`button[subclass = 'spellbook']`);
-const libraryBtn = document.querySelector(`button[subclass = 'library']`);
-const addBtn = document.querySelector(`button[subclass = 'add']`);
-const dropBtn = document.querySelector(`button[subclass = 'drop']`);
-const backBtn = document.querySelector(`button[subclass = 'back']`);
 
 //Imported Classes
 import * as Character from "./initCharacter.js";
@@ -32,6 +22,7 @@ import * as Enemy from "./initEnemy.js";
 //Class Objects
 const playerCharacter = await Character.getCharacterData()
 console.log(playerCharacter)
+playerCharacter.getKeywords(`fire`);
 const gameController = new Game;
 
 //Init Game Landing HUD
@@ -57,9 +48,13 @@ hud.addEventListener(`click`, function(e) {
     const attackAct = e.target.closest(`.attack-action`);
     const spellAttackAct = e.target.closest(`.spell-attack-btn`);
     const attackEnemyAct = e.target.closest(`.attack-enemy-btn`);
-
+    
     //Forge event listeners
     const forgeAct = e.target.closest(`.forge-action`);
+    const forgeBack = e.target.closest(`.forge-back-btn`);
+    const forgeCreate = e.target.closest(`.forge-create-btn`);
+    const forgeUpgrade = e.target.closest(`.forge-upgrade-btn`);
+
 
     const inventoryAct = e.target.closest(`.inventory-action`);
     const useAct = e.target.closest(`.use-action`);
@@ -98,9 +93,24 @@ hud.addEventListener(`click`, function(e) {
         gameController.lootScreen(playerCharacter, dataStorage, actionMenuBtn1);
     
     //Forge Events
-    } else if(forgeAct){
+    } else if(forgeAct) {
         clearButtons(allActionMenuButtons);
         playerCharacter.forgeScreen(dataStorage, actionMenuBtn1, actionMenuBtn2, actionMenuBtn3)
+    } else if(forgeBack) {
+        clearButtons(allActionMenuButtons);
+        resetButtons();
+        // if(forgeBack.layer === `main`){
+        //     clearButtons(allActionMenuButtons);
+        //     resetButtons();
+        // } else {
+        //     clearButtons(allActionMenuButtons);
+        //     playerCharacter.forgeScreen(dataStorage, actionMenuBtn1, actionMenuBtn2, actionMenuBtn3)
+        // }
+    } else if(forgeCreate) {
+        clearButtons(allActionMenuButtons);
+        playerCharacter.createSpell(dataStorage, actionMenuBtn1, actionMenuBtn2, actionMenuBtn3);
+    } else if(forgeUpgrade) {
+
     }
 })
 
@@ -121,12 +131,13 @@ pauseBtn.addEventListener(`click`, function() {
 //Utility Functions=============================================
 const clearButtons = (buttons) => {
     buttons.forEach(btn => {
-        btn.setAttribute(`class`, `am-btn`)
+        btn.setAttribute(`class`, `am-btn`);
+        btn.textContent = ``;
     });
 }
 
 const resetButtons = () => {
-    actionMenuBtn1.textContent = `Continue`;
+    actionMenuBtn1.textContent = `Proceed Onward`;
     actionMenuBtn1.classList.add(`continue-action`);
     actionMenuBtn2.textContent = `SpellBook`;
     actionMenuBtn2.classList.add(`spellbook-action`);

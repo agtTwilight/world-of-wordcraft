@@ -106,14 +106,17 @@ export class Game {
 
     lootScreen (player, ul, btn) {
         this.clearLi();
-
-        if(this.loot.gold) {
+        console.log(this.loot.gold);
+        if(this.loot.gold > 0) {
             const li = document.createElement("li");
-            li.textContent = `You received ${this.loot.gold} pieces of gold.`;
+            li.textContent = `You received ${this.loot.gold} 
+            pieces of gold.`;
+            ul.appendChild(li);
         }
-        if(this.loot.exp) {
+        if(this.loot.exp > 0) {
             const li = document.createElement("li");
             li.textContent = `You received ${this.loot.exp} experience points.`;
+            ul.appendChild(li);
         }
         //add spell points
 
@@ -122,6 +125,7 @@ export class Game {
         //player.spell_points += this.loot.spell_points;
 
         btn.textContent = `Proceed Onward`;
+        btn.classList.remove(`continue-to-loot`);
         btn.classList.add(`continue-action`);
     }
 

@@ -28,29 +28,29 @@ export class Enemy {
 
     }
 
-    attackPlayer(player) {
-        const lineItemsToRemove = document.querySelectorAll(`li`);
-        lineItemsToRemove.remove();
+    // attackPlayer(player) {
+    //     const lineItemsToRemove = document.querySelectorAll(`li`);
+    //     lineItemsToRemove.remove();
         
-        const damage = Math.round(this.attack - (player.defense/Math.floor((Math.random() * this.luck) +1)));
-        player.health -= damage;
+    //     const damage = Math.round(this.attack - (player.defense/Math.floor((Math.random() * this.luck) +1)));
+    //     player.health -= damage;
         
-        let reportDamage = document.createElement("li");
-        let reportHealth = document.createElement("li");
-        reportDamage.textContent(`You took ${damage}pts of damage`);
-        reportHealth.textContent(`Your health is at ${player.health}`);
-        ul.appendChild(reportDamage);
-        ul.appendChild(reportHealth);
+    //     let reportDamage = document.createElement("li");
+    //     let reportHealth = document.createElement("li");
+    //     reportDamage.textContent(`You took ${damage}pts of damage`);
+    //     reportHealth.textContent(`Your health is at ${player.health}`);
+    //     ul.appendChild(reportDamage);
+    //     ul.appendChild(reportHealth);
 
-        console.log(player.health);
-    }
+    //     console.log(player.health);
+    // }
 
-    takeDamage(damage) {
-        this.health = this.health - damage;
-        if(this.health <= 0) {
-            defeated
-        }
-    }
+    // takeDamage(damage) {
+    //     this.health = this.health - damage;
+    //     if(this.health <= 0) {
+    //         defeated
+    //     }
+    // }
 
     //feed this function the game object
     defeated(game) {
