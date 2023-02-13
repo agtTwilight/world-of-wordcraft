@@ -1,9 +1,9 @@
+@import "../../node_modules/nes.css/css/nes-core.min.css";
+
 :root{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Dosis', sans-serif;
-        font-family: 'Gentium Book Plus', serif;
 }
 
 .main-header {
@@ -62,10 +62,23 @@ ul {
         padding:0 20%;
       }
 
-.box1 {
+.input-box {
         height: 85%;
         border-radius: 30px;
         margin: 20px;
+        padding-top: 10%;
+}
+.input-box {
+        height: 85%;
+        border-radius: 30px;
+        margin: 20px;
+        padding-top: 10%;
+}
+.home-box {
+        height: 85%;
+        border-radius: 30px;
+        margin: 20px;
+        padding-top: 2%;
 }
 
 .border1{
@@ -102,5 +115,6 @@ ul {
 #game-btn {
         width: 15%;
         margin: 0 auto;
+        margin-bottom: 10px;
 }
 
