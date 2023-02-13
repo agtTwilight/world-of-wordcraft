@@ -8,70 +8,70 @@ const storyData = [
         tag: "Forest",
         difficulty: 1,
         description:
-            "You are strolling through the forest and you noticed the bushes ahead of you have something shiny peeking out. You decide to go investigate the bush and by surprise, 3 Goblins jumped out waiting to ambush their next victim!",
+            "You are strolling through the forest and you noticed something shiny peeking out of the bushes ahead of you. You decide to go investigate the bush, hoping to find some treasure! At your own surprise - 3 Goblins jumped out waiting to ambush their next victim!",
     },
     {
         story_name: "Tree of Spiders",
         tag: "Forest",
         difficulty: 2,
         description:
-            "During your exploration you find a nice large tree that provides a lot of shade, perfect for a place to rest! As you set your equipment down to take a quick break, you notice 5 Large Spiders descending upon you!",
+            "During your exploration through the forest you find a nice large tree that provides a lot of shade, perfect for a place to rest. As you set your equipment down to take a quick break, you notice 5 Large Spiders descending upon you!",
     },
     {
         story_name: "Forest Graveyard",
         tag: "Forest",
         difficulty: 3,
         description:
-            "Along your journey to the next city, you come across what looks like a graveyard in the middle of a forest. Not even a few moments later, you notice 3 Skeletons climbing out of the ground!",
+            "Along your journey to the next city, you come across what looks like a graveyard in the middle of the forest. Quite an odd sight, but not to an adventurer like you! A few moments later as you walk by, 3 Skeletons climb out of the ground and run towards you!",
     },
     {
         story_name: "Witch Grounds",
         tag: "Forest",
         difficulty: 4,
         description:
-            "You are out in the forest looking for plants to brew a potion and you notice an odd smell in the air. You decide to investigate the odd smell and find yourself in the middle of a witch camp! 3 Witches come out of their huts and they do not look happy!",
+            "You are out in the forest looking to harvest some plants to brew a new potion and you notice a strong smell in the air. Not sure if you liked it nor dislike it, you decide to investigate the source of the smell and find yourself in the middle of a witch camp! 3 Witches come out of their huts and they do not look happy!",
     },
     {
-        story_name: "Desert Crawlers",
-        tag: "Desert",
+        story_name: "Grassland Crawlers",
+        tag: "Plains",
         difficulty: 1,
         description:
-            "For your next adventure, you decide to cross the dreaded desert. As you make your attempt through the desert, you encounter your greatest fear - 2 Desert Spiders looking for their next meal!",
+            "For your next adventure you decide to cross the dreaded plains. As you make your attempt to cross through the plains, you encounter your greatest fear - 2 Spiders looking for their next meal!",
     },
     {
-        story_name: "Desert Campers",
-        tag: "Desert",
+        story_name: "Grassland Campers",
+        tag: "Plains",
         difficulty: 2,
         description:
-            "During your adventure to cross the desert. You find an abondoned camp in the middle of the desert, you decide to see if anything was left behind, but it turns out the previous campers did not make it out alive! 4 Skeletons arise and they did not look like they were expecting any visitors!",
+            "During your adventure to cross the plains you find an abondoned camp. You decide to see if anything might have been left behind, but it turns out the previous campers did not make it out alive! 4 Skeletons arise from the camp and they do not look friendly!",
     },
     {
-        story_name: "Desert Friends?",
-        tag: "Desert",
+        story_name: "Grassland Friends?",
+        tag: "Plains",
         difficulty: 3,
         description:
-            "Along your journey through the desert, you come along a nice looking individual who seems to also be making the same journey. You decide to camp up with them, but in the middle of the night you hear what seems to be a Witch enchantment, so you get up to find out they surprised you with an attack!",
+            "Along your journey through the plains, you come along a nice looking individual who seems to also be making the same journey as yourself. You decide to camp up with them since you have had a lonely journey thus far. In the middle of the night you hear what seems to be a Witch enchantment, so you get up to find out they surprised you with an attack!",
     },
     {
-        story_name: "Desert Goblins",
-        tag: "Desert",
+        story_name: "Grassland Goblins",
+        tag: "Plains",
         difficulty: 4,
         description:
-            "While you make your way through the desert, you find a mob of 6 goblins! You try to sneak by, but one of the goblins catch you and alert the rest of his crew!",
+            "While you make your way through the plains, all seemed well until you glanced at a mob of 6 goblins in the distance. You try to sneak by, but at the last moment, one of the goblins caught you and alerted the rest of his crew!",
     },
     {
         story_name: "Witches Domain",
         tag: "Ruins",
         difficulty: 1,
         description:
-            "As you are making your way to the next city, you come across an abondoned ruin. You make your way to the entrance hoping to take a quick break, unexpectedly, 2 Witches come out of ruin gates and they're not looking for friends!",
+            "As you are making your way to the next city, you come across an abondoned ruin. You make your way to the entrance hoping to take a quick break, unexpectedly, 2 Witches come out of ruin and they're not looking for friends!",
     },
     {
-        story_name: "Goblin Camp",
+        story_name: "Goblin Party",
         tag: "Ruins",
         difficulty: 2,
         description:
-            "As you are making your way to the next city, you come across an abondoned ruin. You make your way to the entrance hoping to take a quick break, unexpectedly, 2 Witches come out of ruin gates and they're not looking for friends!",
+            "You are exploring an abandoned ruin and come across a nicely lit room. Out of your own genuine curiosity, you investigate the source hoping to find a friendly adventurer like yourself. Unfortunately, you walked in on a goblin party! 3 Goblins turn your way, not expecting any visitors!",
     },
     {
         story_name: "Spider's Home",
