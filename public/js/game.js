@@ -1,6 +1,7 @@
 //you were about to tahe actionMenuBtn1 query selector and place it in the Game class so that you can create a progress the story function.
 
 //HUD variables
+const body = document.querySelector(`body`);
 const hud = document.querySelector(`#hud`);
 const actionMenuBtn1 = document.querySelector(`#am-btn-1`);
 const actionMenuBtn2 = document.querySelector(`#am-btn-2`);
@@ -124,6 +125,7 @@ hud.addEventListener(`click`, function(e) {
 
 pauseBtn.addEventListener(`click`, function() {
     pauseMenu.setAttribute(`style`, `left: 0px; transition: .5s`);
+    pauseMenu.status = 'open'
     const stats = playerCharacter.getStats();
     const keys = Object.keys(stats);
 
@@ -136,6 +138,18 @@ pauseBtn.addEventListener(`click`, function() {
         characterDetails.appendChild(li);
     });
 });
+
+body.addEventListener(`click`, function(e) {
+    const menuEl = e.target.closest(`#pause-menu`);
+    const pauseBtnEl = e.target.closest(`#pause-button`);
+
+    if(!menuEl && !pauseBtnEl){
+        console.log(`test`);
+        pauseMenu.setAttribute(`style`, `left: -19vw; transition: .5s`);
+    }
+});
+
+
 
 
 //Utility Functions=============================================
