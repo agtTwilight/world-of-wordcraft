@@ -5,7 +5,7 @@ const spellData = [
                 magic_type: "wind",
                 magic_words: "swoosh",
                 matched_words: 0,
-                power: 50,
+                power: 3,
                 target: 0,
                 magic_cost: 1,
                 use: 10,

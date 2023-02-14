@@ -39,14 +39,14 @@ export class Game {
         .then(data => {
             for (let i = 0; i < campaignLength; i++) {
                 const storyNumber = Math.floor(Math.random() * data.length);
-                this.storyList.push(storyNumber);
+                this.storyList.push(storyNumber + 1);
                 this.stories.push(data[storyNumber]);
                 console.log(storyNumber);
                 console.log(this.stories);
+                console.log(this.storiesList);
             }
             if(this.currentEnemies[0] === undefined){
                 this.getEnemyList(this.storyList);
-                console.log(`init`);
                 return this.storyList;
             } else {
                 return this.storyList;
@@ -60,6 +60,10 @@ export class Game {
         const li = document.createElement("li");
         li.textContent = this.stories[0].description;
         ul.appendChild(li);
+        
+        if(this.currentEnemies[0] === undefined){
+            this.getEnemyList([this.stories[0].id]);
+        }
 
         //update action menu button
         btn.textContent = `Attack`;
@@ -78,7 +82,6 @@ export class Game {
                 this.enemyList = data.map((enemy) => {return enemy.EnemyId});
                 
                 if(this.currentEnemies[0] === undefined){
-                    console.log(`Enemy`);
                     this.generateMob(this.enemyList)
                     //testing loot with only gold
                 } else {
@@ -182,12 +185,13 @@ export class Game {
             
             console.log(selectedEnemy);
 
-            const damage = Math.round(player.activeSpell.power - (selectedEnemy.defense/Math.floor((Math.random() * player.luck) +1)));
+            let damage = Math.round((player.activeSpell.power * 10) - (selectedEnemy.defense/Math.floor((Math.random() * player.luck) +1)));
+            if(damage < 0) {
+                damage = 0;
+            }
             selectedEnemy.health -= damage;
             console.log(selectedEnemy.health);
             
-            //add [0] to each instance of selectedEnemy or just change what selected enemy is selecting
-            //send on path to enemy turn or loot screen
             if(selectedEnemy.health <= 0) {
                 const isWon = selectedEnemy.defeated(this);
     
@@ -205,8 +209,22 @@ export class Game {
                 } else {
                     let reportDamage = document.createElement("li");
                     let reportHealth = document.createElement("li");
-                    reportDamage.textContent =`${selectedEnemy.enemy_name} took ${damage}pts of damage`;
-                    reportHealth.textContent =`${selectedEnemy.enemy_name}'s health is at ${selectedEnemy.health}`;
+                    console.log(typeof(damage));
+                        console.log(damage);
+                    if(damage <= 0) {
+                        reportDamage.textContent =`You missed ${selectedEnemy.enemy_name}.`;
+                    } else {
+                        console.log(typeof(damage));
+                        console.log(damage);
+                        reportDamage.textContent =`${selectedEnemy.enemy_name} took ${damage}pts of damage`;
+                    }
+
+                    if(selectedEnemy.health < 0) {
+                        reportHealth.textContent =`${selectedEnemy.enemy_name}'s health is at ${0}`;
+                    } else {
+                        reportHealth.textContent =`${selectedEnemy.enemy_name}'s health is at ${selectedEnemy.health}`;
+                    }
+
                     ul.appendChild(reportDamage);
                     ul.appendChild(reportHealth);
             
@@ -239,13 +257,20 @@ export class Game {
             this.clearLi();
 
             this.currentEnemies.forEach(enemy => {
-                const damage = Math.round(enemy.attack - (player.defense/Math.floor((Math.random() * enemy.luck) +1)));
+                let damage = Math.round(enemy.attack - (player.defense/Math.floor((Math.random() * enemy.luck) +1)));
+                let reportDamage = document.createElement("li");
+                    reportDamage.textContent =`You took ${damage}pts of damage`;
+                let reportHealth = document.createElement("li");
+
+                if(damage < 0) {
+                    damage = 0;
+                    reportDamage.textContent =`${enemy.enemy_name} missed you.`
+                }
+
                 player.health -= damage;
                 console.log(player.health);
 
-                let reportDamage = document.createElement("li");
-                let reportHealth = document.createElement("li");
-                reportDamage.textContent =`You took ${damage}pts of damage`;
+                
                 reportHealth.textContent = `Your health is at ${player.health}`;
                 ul.appendChild(reportDamage);
                 ul.appendChild(reportHealth);
