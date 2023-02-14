@@ -1,5 +1,3 @@
-@import "../../node_modules/nes.css/css/nes-core.min.css";
-
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
   * {
@@ -78,7 +76,7 @@
 
 .tavern {
         width: 100vw;
-        height: 90vh;
+        height: 100vh;
         border: solid black 1px;
         background-image:url("../assets/pixel-art-tavern-test.png");
         background-size: 110% 110%;

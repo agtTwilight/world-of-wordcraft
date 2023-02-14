@@ -12,6 +12,9 @@ router.get("/", (req, res) => {
         res.render("login", {
             userAchievements: hbsInfo.Achievements[0],
         });
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json({ msg: "an error occured", err })
     });
 });
 
@@ -24,7 +27,10 @@ router.get("/signup", (req, res) => {
         res.render("signup", {
             userAchievements: hbsInfo.Achievements[0],
         });
-    });
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json({ msg: "an error occured", err })
+    })
 });
 
 router.get("/home", (req, res) => {
@@ -44,12 +50,15 @@ router.get("/home", (req, res) => {
             userStats: hbsInfo.Characters[0],
             userAchievements: userAchievements,
         });
-    });
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json({ msg: "an error occured", err })
+    })
 });
 
 // TODO: add event listener that calls .../game url
 router.get("/game", (req, res) => {
     res.render("game");
-});
+})
 
 module.exports = router;
