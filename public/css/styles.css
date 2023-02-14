@@ -67,7 +67,7 @@
 
 .tavern {
         width: 100vw;
-        height: 90vh;
+        height: 100vh;
         border: solid black 1px;
         background-image:url("../assets/pixel-art-tavern-test.png");
         background-size: 110% 110%;
@@ -115,7 +115,10 @@ ul {
 #character-sprite {
         width: 200px;
         height: 250px;
-        border: solid slateblue 1px;
+}
+
+#character-name {
+        color: white;
 }
 
 #character-traits {
