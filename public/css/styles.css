@@ -27,6 +27,17 @@
         padding: 0;
         box-sizing: border-box;
 }
+.game-title{
+        margin-left: 1%;
+                letter-spacing: 1px;
+}
+
+.nav{
+        margin: 0 5px;
+        padding: 0 5px;
+        font-size: 12px;
+        letter-spacing: 1px;
+}
 
 .main-header {
         display:flex;
@@ -115,12 +126,15 @@ ul {
 #character-sprite {
         width: 200px;
         height: 250px;
-        border: solid slateblue 1px;
 }
 
 #character-traits {
         display: flex;
         height: 95%;
+}
+
+#character-name{
+        color: white;
 }
 
 .stats{
