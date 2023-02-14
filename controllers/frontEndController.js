@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { User, Character, Achievement } = require("../models");
-const seedAll = require("../seeds/index")
 
 // TODO: once home & login .handlebars are made, 1. check if user is logged in (if so, res.render home w/ appropriate data) else, res.render login w/ appropriate data
 router.get("/", (req, res) => {
@@ -60,9 +59,8 @@ router.get("/home", (req, res) => {
 });
 
 // TODO: add event listener that calls .../game url
-router.get("/game", async (req, res) => {
-    await seedAll();
-    return res.render("game");
+router.get("/game",  (req, res) => {
+     res.render("game");
 })
 
 module.exports = router;
