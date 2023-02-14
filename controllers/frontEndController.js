@@ -20,18 +20,19 @@ router.get("/", (req, res) => {
 });
 
 router.get("/signup", (req, res) => {
-    User.findByPk(1, {
-        include: [Achievement],
-    }).then((userData) => {
-        const hbsInfo = userData.toJSON();
-        console.log(hbsInfo.Achievements[0].text);
-        res.render("signup", {
-            userAchievements: hbsInfo.Achievements[0],
-        });
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json({ msg: "an error occured", err })
-    })
+    // User.findByPk(1, {
+    //     include: [Achievement],
+    // }).then((userData) => {
+    //     const hbsInfo = userData.toJSON();
+    //     console.log(hbsInfo.Achievements[0].text);
+    //     res.render("signup", {
+    //         userAchievements: hbsInfo.Achievements[0],
+    //     });
+    // }).catch(err => {
+    //     console.log(err);
+    //     res.status(500).json({ msg: "an error occured", err })
+    // })
+    res.render("signup")
 });
 
 router.get("/home", (req, res) => {
