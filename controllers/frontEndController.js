@@ -29,7 +29,7 @@ router.get("/signup", (req, res) => {
 
 router.get("/home", (req, res) => {
     if (!req.session.userId) {
-        res.render("login")
+        return res.render("login")
     }
     User.findByPk(req.session.userId, {
         include: [{ model: Character }, { model: Achievement }],
