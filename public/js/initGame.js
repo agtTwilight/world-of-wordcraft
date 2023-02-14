@@ -54,16 +54,30 @@ export class Game {
         })
     }
 
-    progressStory (ul, btn){
-        //remove any line items in spellbox then update and add new line item
+    async progressStory (ul, btn){
+        //add descriptive story to storybox
         this.clearLi();
         const li = document.createElement("li");
         li.textContent = this.stories[0].description;
         ul.appendChild(li);
         
+        const containerEl = document.querySelector(`#game-container`);
+        containerEl.setAttribute(`style`, `    background-image: url('../assets/game-bg/${this.stories[0].tag}.png'); background-size: cover;     background-position-y: bottom;`)
+
+        const spawn1 = document.querySelector(`#spawn-1`)
+        const spawn2 = document.querySelector(`#spawn-2`)
+        const spawn3 = document.querySelector(`#spawn-3`)
+        const spawns = [spawn1, spawn2, spawn3];
+
         if(this.currentEnemies[0] === undefined){
-            this.getEnemyList([this.stories[0].id]);
+            await this.getEnemyList([this.stories[0].id]);
         }
+
+        this.currentEnemies.forEach((enemy, i) => {
+            spawns[i].setAttribute(`style`, `background-image: url('${enemy.sprite}'); background-size: cover;`)
+            enemy.index = i;
+            console.log(enemy)
+        });
 
         //update action menu button
         btn.textContent = `Attack`;
