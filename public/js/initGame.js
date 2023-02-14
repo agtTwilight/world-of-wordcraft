@@ -60,6 +60,10 @@ export class Game {
         const li = document.createElement("li");
         li.textContent = this.stories[0].description;
         ul.appendChild(li);
+        
+        if(this.currentEnemies[0] === undefined){
+            this.getEnemyList([this.stories[0].id]);
+        }
 
         //update action menu button
         btn.textContent = `Attack`;
