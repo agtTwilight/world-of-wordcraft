@@ -422,7 +422,7 @@ export class Character {
 
                 await fetch("/api/inventoryItems/", {
                     method: "POST",
-                    body: JSON.stringify({ "ItemId": item[i]["id"], "InventoryId": this.Inventory.id }),
+                    body: JSON.stringify({ "ItemId": items[i]["id"], "InventoryId": this.Inventory.id }),
                     headers: {
                         "Content-Type": "application/json"
                     }

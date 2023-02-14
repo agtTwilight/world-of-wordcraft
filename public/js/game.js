@@ -15,7 +15,9 @@ const dataStorage = document.querySelector("#data-storage")
 const pauseBtn = document.querySelector(`.pause-btn`);
 const pauseMenu = document.querySelector(`#pause-menu`)
 const characterDetails = document.querySelector(`#character-details-list`);
-
+const saveBtn = document.querySelector(`#save`)
+const saveExitBtn = document.querySelector(`#save-and-exit`)
+const exitBtn = document.querySelector(`#exit`)
 
 //Imported Classes
 import * as Character from "./initCharacter.js";
@@ -118,14 +120,6 @@ hud.addEventListener(`click`, function(e) {
     }else if(forgeBuild) {}
 
 })
-
-// inventoryBtn.addEventListener("click", async() =>{
-//     await playerCharacter.displayInventory(dataStorage,playerCharacter);
-// })
-
-// spellbookBtn.addEventListener("click", async () =>{
-//     await playerCharacter.displaySpells(dataStorage);
-// })
 
 pauseBtn.addEventListener(`click`, function() {
     pauseMenu.setAttribute(`style`, `left: 0px; transition: .5s`);
