@@ -63,7 +63,7 @@ export class Game {
         ul.appendChild(li);
         
         const containerEl = document.querySelector(`#game-container`);
-        containerEl.setAttribute(`style`, `    background-image: url('../assets/game-bg/${this.stories[0].tag}.png'); background-size: cover;     background-position-y: bottom;`)
+        containerEl.setAttribute(`style`, `    background-image: url('../assets/game-bg/${this.stories[0]["tag"].toLowerCase()}.png'); background-size: cover;     background-position-y: bottom;`)
 
         const spawn1 = document.querySelector(`#spawn-1`)
         const spawn2 = document.querySelector(`#spawn-2`)
@@ -101,7 +101,7 @@ export class Game {
         } else {
             return this.enemyList;
         }           
-        // fetch(`http://localhost:3000/api/enemies/mob/${currentStory}`)
+        // fetch(`/api/enemies/mob/${currentStory}`)
         //     .then(res =>{
         //         return res.json();
         //     })

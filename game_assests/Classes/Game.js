@@ -19,13 +19,13 @@ class Game {
         };
     }
     async testCharacter () {
-        const getCharacter = await fetch(`http://localhost:3000/api/users/testcharacter/1`);
+        const getCharacter = await fetch(`/api/users/testcharacter/1`);
         const characterObj = await getCharacter.json();
         return characterObj;
     }
 
     gameInit(campaignLength){
-        fetch(`http://localhost:3000/api/stories`)
+        fetch(`/api/stories`)
         .then(res =>{
             return res.json();
         })
@@ -46,7 +46,7 @@ class Game {
     getEnemyList(stories){        
         const currentStory = stories[0];
         
-        fetch(`http://localhost:3000/api/enemies/mob/${currentStory}`)
+        fetch(`/api/enemies/mob/${currentStory}`)
             .then(res =>{
                 return res.json();
             })
@@ -64,7 +64,7 @@ class Game {
 
     generateMob (enemies){
         enemies.forEach(async (enemy) => {
-            const getEnemy = await fetch(`http://localhost:3000/api/enemies/${enemy}`);
+            const getEnemy = await fetch(`/api/enemies/${enemy}`);
             const enemyObj = await getEnemy.json();
             const newEnemy = new Enemy(enemyObj);
             

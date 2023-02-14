@@ -174,7 +174,7 @@ export class Character {
     }
 
     async getKeywords(type) {
-        const keywordsData = await fetch(`http://localhost:3000/api/forge/type/${type}`);
+        const keywordsData = await fetch(`/api/forge/type/${type}`);
 
         //eventually we'll divide the array based on frequency value and type, that way we can pull a specific amout of each type and a porpotion of them based on thier frequency.
         const keywords = await keywordsData.json();
@@ -470,7 +470,7 @@ export class Character {
 
 // fetch the user api, get the specific character data, return it for use
 export const getCharacterData = async () => {
-    const rawData = await fetch("http://localhost:3000/api/users/1", { method: "GET" })
+    const rawData = await fetch("/api/users/1", { method: "GET" })
     const newData = await rawData.json();
 
     // TODO: make the '0' increment to active character

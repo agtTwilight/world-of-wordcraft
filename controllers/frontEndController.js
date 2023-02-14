@@ -4,33 +4,35 @@ const { User, Character, Achievement } = require("../models");
 
 // TODO: once home & login .handlebars are made, 1. check if user is logged in (if so, res.render home w/ appropriate data) else, res.render login w/ appropriate data
 router.get("/", (req, res) => {
-    User.findByPk(1, {
-        include: [Achievement],
-    }).then((userData) => {
-        const hbsInfo = userData.toJSON();
-        console.log(hbsInfo.Achievements[0].text);
-        res.render("login", {
-            userAchievements: hbsInfo.Achievements[0],
-        });
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json({ msg: "an error occured", err })
-    });
+    res.render("login")
+    // User.findByPk(1, {
+    //     include: [Achievement],
+    // }).then((userData) => {
+    //     const hbsInfo = userData.toJSON();
+    //     console.log(hbsInfo.Achievements[0].text);
+    //     res.render("login", {
+    //         userAchievements: hbsInfo.Achievements[0],
+    //     });
+    // }).catch(err => {
+    //     console.log(err);
+    //     res.status(500).json({ msg: "an error occured", err })
+    // });
 });
 
 router.get("/signup", (req, res) => {
-    User.findByPk(1, {
-        include: [Achievement],
-    }).then((userData) => {
-        const hbsInfo = userData.toJSON();
-        console.log(hbsInfo.Achievements[0].text);
-        res.render("signup", {
-            userAchievements: hbsInfo.Achievements[0],
-        });
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json({ msg: "an error occured", err })
-    })
+    // User.findByPk(1, {
+    //     include: [Achievement],
+    // }).then((userData) => {
+    //     const hbsInfo = userData.toJSON();
+    //     console.log(hbsInfo.Achievements[0].text);
+    //     res.render("signup", {
+    //         userAchievements: hbsInfo.Achievements[0],
+    //     });
+    // }).catch(err => {
+    //     console.log(err);
+    //     res.status(500).json({ msg: "an error occured", err })
+    // })
+    res.render("signup")
 });
 
 router.get("/home", (req, res) => {
@@ -57,8 +59,8 @@ router.get("/home", (req, res) => {
 });
 
 // TODO: add event listener that calls .../game url
-router.get("/game", (req, res) => {
-    res.render("game");
+router.get("/game",  (req, res) => {
+     res.render("game");
 })
 
 module.exports = router;
