@@ -469,15 +469,17 @@ export class Character {
 }
 
 // fetch the user api, get the specific character data, return it for use
-export const getCharacterData = async (username) => {
-    // TODO: make the '1' change to a the current user's id
+export const getCharacterData = async () => {
     const rawData = await fetch("http://localhost:3000/api/users/1", { method: "GET" })
     const newData = await rawData.json();
 
     // TODO: make the '0' increment to active character
     // create the playerCharacter
     const characterData = newData.Characters[0];
+    console.log(newData.Characters)
     const playerCharacter = new Character(characterData)
 
     return playerCharacter
 }
+
+// getCharacterData()

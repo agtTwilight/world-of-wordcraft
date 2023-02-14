@@ -22,8 +22,19 @@ router.get("/logout", (req, res) => {
 
 // get a single user, their achievements, and those achievement comments
 router.get("/:id", (req, res) => {
-        User.findByPk(req.params.id, {
-                include: [{model:Achievement, include:[Comment]},{model:Character, include:[{model: Inventory, include:[Item]}, {model:Spellbook, include:[Spell]}]}]
+        // if (req.params.id === 0) {
+        //         User.findByPk(req.session.userId, {
+        //                 include: [{model:Achievement, include:[Comment]},{model:Character, include:[{model: Inventory, include:[Item]}, {model:Spellbook, include:[Spell]}]}]
+        //         }).then(userData => {
+        //                 console.log(userData)
+        //                 res.json(userData)
+        //         }).catch(err => {
+        //                 console.log(err);
+        //                 res.status(500).json({ msg: "an error occured", err })
+        //         })   
+        // }
+        User.findByPk(req.session.userId, {
+                include: [{model:Character, include:[{model: Inventory, include:[Item]}, {model:Spellbook, include:[Spell]}]}]
         }).then(userData => {
                 console.log(userData)
                 res.json(userData)
