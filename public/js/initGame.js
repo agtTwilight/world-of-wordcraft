@@ -32,7 +32,7 @@ export class Game {
     }
     //initiate game and get stories
     gameInit(campaignLength){
-        fetch(`http://localhost:3000/api/stories`)
+        fetch(`/api/stories`)
         .then(res =>{
             return res.json();
         })
@@ -90,7 +90,7 @@ export class Game {
 
     async getEnemyList(stories){        
         const currentStory = stories[0];
-        const enemiesRaw = await fetch(`http://localhost:3000/api/enemies/mob/${currentStory}`);
+        const enemiesRaw = await fetch(`/api/enemies/mob/${currentStory}`);
         const enemies = await enemiesRaw.json();
 
         this.enemyList = enemies.map((enemy) => {return enemy.EnemyId});
@@ -119,7 +119,7 @@ export class Game {
 
     generateMob (enemies){
         enemies.forEach(async (enemy) => {
-            const getEnemy = await fetch(`http://localhost:3000/api/enemies/${enemy}`);
+            const getEnemy = await fetch(`/api/enemies/${enemy}`);
             const enemyObj = await getEnemy.json();
             const newEnemy = new Enemy(enemyObj);
             console.log(newEnemy);
