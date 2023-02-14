@@ -10,9 +10,7 @@
                 <h1 class="log-header">JOURNAL</h1>
                 <section id="logs">
                         <ul id="log-items">
-                                <li>where the logs go</li>
-                                <li>where the logs go</li>
-                                <li>where the logs go</li>
+                                <li>{{userAchievements.text}}</li>
                         </ul>
                 </section>
         </section>
@@ -23,48 +21,52 @@
                         </div>
                     <div id="character-traits" class="col-5 row d-flex overflow-auto nes-container is-rounded">
                         <p class="red-text">Character Stats</p>
-                        <div id="health-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="healthDisplay" class="red-text">HP</p>
+
+
+                        <div id="lvl-container" class="stats nes-container is-rounded" style="background-color:white;">
+                            <p id="lvlDisplay" class="green-text">LEVEL: {{userStats.level}}</p>
                         </div>
+
+                        <div id="exp-container" class="stats nes-container is-rounded" style="background-color:white;">
+                            <p id="expDisplay" class="green-text">EXP: {{userStats.exp}}</p>
+                        </div>
+
+                        <div id="hp-container" class="stats nes-container is-rounded" style="background-color:white;">
+                            <p id="hpDisplay" class="red-text">HP: {{userStats.health}}</p>
+                        </div>
+
+                        <div id= "gold-container" class="stats nes-container is-rounded" style="background-color:white;">
+                            <p id="goldDisplay" class="yellow-text">GOLD: {{userStats.gold}}</p>
+                        </div>
+
+                        <div id="spellpoint-container" class="stats nes-container is-rounded" style="background-color:white;">
+                            <p id="spellpointDisplay" class="blue-text">SPELL POINTS: {{userStats.gold}}</p>
+                        </div>
+
                         <div id="magic-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="magicDisplay">MAGIC</p>
+                            <p id="magicDisplay">MAGIC: {{userStats.magic}}</p>
                         </div>
+
                         <div id="resistance-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="resistanceDisplay">RESISTANCE</p>
+                            <p id="resistanceDisplay">RESISTANCE: {{userStats.resistance}}</p>
                         </div>
-                        <div id="con-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="conDisplay">CON</p>
+
+                        <div id="def-container" class="stats nes-container is-rounded" style="background-color:white;">
+                            <p id="defDisplay">DEFENSE: {{userStats.defense}}</p>
                         </div>
-                        <div id="cha-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="chaDisplay">CHA</p>
+
+                        <div id="acc-container" class="stats nes-container is-rounded" style="background-color:white;">
+                            <p id="accDisplay">ACCURACY: {{userStats.accuracy}}</p>
                         </div>
-                        <div id="int-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="intDisplay">INT</p>
+
+                        <div id="luck-container" class="stats nes-container is-rounded" style="background-color:white;">
+                            <p id="luckDisplay">LUCK: {{userStats.luck}}</p>
                         </div>
-                        <div id="int-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="intDisplay">INT</p>
+
+                        <div id="constitution-container" class="stats nes-container is-rounded" style="background-color:white;">
+                            <p id="constDisplay">CONSTITUTION: {{userStats.constitution}}</p>
                         </div>
-                        <div id="health-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="healthDisplay" class="red-text">HP</p>
-                        </div>
-                        <div id="magic-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="magicDisplay">MAGIC</p>
-                        </div>
-                        <div id="resistance-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="resistanceDisplay">RESISTANCE</p>
-                        </div>
-                        <div id="con-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="conDisplay">CON</p>
-                        </div>
-                        <div id="cha-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="chaDisplay">CHA</p>
-                        </div>
-                        <div id="int-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="intDisplay">INT</p>
-                        </div>
-                        <div id="int-container" class="stats nes-container is-rounded" style="background-color:white;">
-                            <p id="intDisplay">INT</p>
-                        </div>
+
                     </div>
                 </section>
         </section>
