@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const allRoutes = require("./controllers");
+const seedAll = require("./seeds/index")
 
 const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
@@ -58,6 +59,7 @@ app.get("/sessions", (req, res) => {
 
 // syncs our data base
 sequelize.sync({ force: false }).then(function () {
+    seedAll()
     app.listen(PORT, function () {
         console.log("App listening on PORT " + PORT);
     });
