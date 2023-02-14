@@ -1,5 +1,8 @@
 @import "../../node_modules/nes.css/css/nes-core.min.css";
 
+body {
+    background-color: black;
+}
 
 .am-btn {
     width: 100%;
@@ -36,19 +39,39 @@
     font-size: 3vh;
 }
 
+.spawn-point {
+    width: 20vw;
+    height: 20vw;
+    position: absolute;
+}
+
 /* mrgings on this need to be fixed */
 #game-container {
     /* add minimum height and width */
     width: 80vw;
     height: 80vh;
     overflow: hidden;
-    border: solid green 1px;
     border-radius: 30px;
     position: relative;
     display: flex;
     align-items: center;
     flex-direction: column-reverse;
 }
+
+#spawn-1 {
+    top: 10vh;
+}
+
+#spawn-2 {
+    top: 10vh;
+    right: 10vw;
+}
+
+#spawn-3 {
+    top: 10vh;
+    left: 10vw;
+}
+
 
 #hud {
     padding: 0;

@@ -57,6 +57,28 @@ export class Enemy {
         const indexToRemove = game.currentEnemies.indexOf(this);
         game.currentEnemies.splice(indexToRemove, 1);
 
+        const spawn1 = document.querySelector(`#spawn-1`)
+        const spawn2 = document.querySelector(`#spawn-2`)
+        const spawn3 = document.querySelector(`#spawn-3`)
+        const spawns = [spawn1, spawn2, spawn3];
+
+        const enemyFadeOut = setInterval(() => {
+            
+        })
+        
+        // const _tempStyle = spawns[this.index].getAttribute(`style`);
+        // const enemyFadeOut = setInterval(() => {
+        //     opacity--;
+            
+        //     spawns[this.index].setAttribute(`style`, _tempStyle + `opacity: ${opacity};`)
+        //     console.log(opacity);
+        //     if(opacity <= 0){
+        //         clearInterval(enemyFadeOut);
+        //     }
+        // }, 100)
+        const _tempStyle = spawns[this.index].getAttribute(`style`);
+        spawns[this.index].setAttribute(`style`, _tempStyle + `opacity: 0%; transition: .5s;`)
+
         if(game.currentEnemies.length != 0) {
             return false;
         } else {
