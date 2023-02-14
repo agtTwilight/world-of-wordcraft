@@ -70,11 +70,14 @@ export class Game {
         const spawn3 = document.querySelector(`#spawn-3`)
         const spawns = [spawn1, spawn2, spawn3];
 
+        if(this.currentEnemies[0] === undefined){
+            await this.getEnemyList([this.stories[0].id]);
+        }
+
         setTimeout(() => {
             game.currentEnemies.forEach((enemy, i) => {
                 spawns[i].setAttribute(`style`, `background-image: url('${enemy.sprite}'); background-size: cover;`)
                 enemy.index = i;
-                console.log(enemy)
             });
     
         }, 100)

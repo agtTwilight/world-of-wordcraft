@@ -1,15 +1,23 @@
-@import "../../node_modules/nes.css/css/nes-core.min.css";
+:root {
+    --am-font-color: azure;
+    --am-header-color: #141d1cf1;
+    --hud-background-color: #1c2625c7;
+}
 
 body {
-    background-color: black;
+    background-image: url('../assets/game-bg/pathway2.png');
+    background-size: cover;
+    background-position-y: center;
 }
 
 .am-btn {
+    font-size: small;
+    color: var(--am-font-color);
     width: 100%;
     height: 16.6%;
-    background-color: green;
+    background-color: var(--hud-background-color);
     border: none;
-    border-top: solid black 1px;
+    border-top: solid #f0ffff3d 2px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,12 +54,22 @@ body {
 }
 
 /* mrgings on this need to be fixed */
+#background {
+    width: 100%;
+    height: 90vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #game-container {
     /* add minimum height and width */
     width: 80vw;
-    height: 80vh;
+    height: 85vh;
     overflow: hidden;
     border-radius: 30px;
+    border: solid var(--am-header-color) 5px;
     position: relative;
     display: flex;
     align-items: center;
@@ -72,13 +90,11 @@ body {
     left: 10vw;
 }
 
-
 #hud {
     padding: 0;
     margin: 0;
     height: fit-content;
     width: 87%;
-    background-color: blue;
     position: relative;
 }
 
@@ -86,31 +102,29 @@ body {
     padding: 0;
     margin: 0;
     height: 30vh;
-    border: solid black 1px;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
     display: flex;
     flex-direction: column;
 }
 
 #am-header {
+    font-size: small;
+    color: azure;
     height: 17%;
-    background-color: aqua;
-    border-top-left-radius: 20px;
+    background-color: var(--am-header-color) ;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#am-btn-5 {
-    border-bottom-left-radius: 20px;
+#story-box {
+    /* border-left: solid #f0ffff3d 2px; */
+    background-color: var(--hud-background-color);
+    position: relative;
 }
 
-#story-box {
-    border: solid black 1px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    position: relative;
+#data-storage {
+    font-size: small;
+    color: var(--am-font-color);
 }
 
 #active-spell {
