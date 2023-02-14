@@ -28,14 +28,18 @@ router.get("/signup", (req, res) => {
 });
 
 router.get("/home", (req, res) => {
-    User.findByPk(1, {
+    User.findByPk(req.session.userId, {
         include: [{ model: Character }, { model: Achievement }],
     }).then((userData) => {
         const hbsInfo = userData.toJSON();
-        console.log(hbsInfo.Achievements[0].text);
+        if (hbsInfo.Achievements[0]) {
+            const userAchievements = hbsInfo.Achievements[0]
+        } else {
+            userAchievements = {text:"Play more to unlock achievements!"}
+        }
         res.render("home", {
             userStats: hbsInfo.Characters[0],
-            userAchievements: hbsInfo.Achievements[0],
+            userAchievements: userAchievements,
         });
     });
 });
