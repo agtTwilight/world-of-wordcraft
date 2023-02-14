@@ -2,7 +2,6 @@ const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const allRoutes = require("./controllers");
-const seedAll = require("./seeds/index.js")
 
 const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
@@ -56,9 +55,6 @@ app.use(allRoutes);
 app.get("/sessions", (req, res) => {
     res.json(req.session);
 });
-
-// seed the db
-// seedAll()
 
 // syncs our data base
 sequelize.sync({ force: false }).then(function () {
