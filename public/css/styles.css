@@ -27,6 +27,17 @@
         padding: 0;
         box-sizing: border-box;
 }
+.game-title{
+        margin-left: 1%;
+                letter-spacing: 1px;
+}
+
+.nav{
+        margin: 0 5px;
+        padding: 0 5px;
+        font-size: 12px;
+        letter-spacing: 1px;
+}
 
 .main-header {
         display:flex;
@@ -67,7 +78,7 @@
 
 .tavern {
         width: 100vw;
-        height: 100vh;
+        height: 90vh;
         border: solid black 1px;
         background-image:url("../assets/pixel-art-tavern-test.png");
         background-size: 110% 110%;
@@ -117,13 +128,13 @@ ul {
         height: 250px;
 }
 
-#character-name {
-        color: white;
-}
-
 #character-traits {
         display: flex;
         height: 95%;
+}
+
+#character-name{
+        color: white;
 }
 
 .stats{
