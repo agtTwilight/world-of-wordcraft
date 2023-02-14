@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const sequelize = require("../../config/connection");
 // Boiler plate sequelize model construction ex. taken from unfinished Character.js file
 class Comment extends Model {}
 

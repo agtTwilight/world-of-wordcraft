@@ -1,0 +1,12 @@
+h2 {
+        text-align: center;
+        color: #5EB1BF;
+}
+input {
+        margin: 10px auto;
+}
+
+#signup-btn {
+        width: fit-content;
+        margin: 0 auto;
+}

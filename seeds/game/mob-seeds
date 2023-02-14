@@ -1,0 +1,72 @@
+const {Mob} = require("../../models");
+
+const mobData = [
+    {
+        EnemyId: 1,
+        StoryId: 1
+    },
+    {
+        EnemyId: 2,
+        StoryId: 2
+    },
+    {
+        EnemyId: 3,
+        StoryId: 3
+    },
+    {
+        EnemyId: 4,
+        StoryId: 4
+    },
+    {
+        EnemyId: 1,
+        StoryId: 5
+    },
+    {
+        EnemyId: 2,
+        StoryId: 6
+    },
+    {
+        EnemyId: 3,
+        StoryId: 7
+    },
+    {
+        EnemyId: 4,
+        StoryId: 8
+    },
+    {
+        EnemyId: 1,
+        StoryId: 9
+    },
+    {
+        EnemyId: 2,
+        StoryId: 10
+    },
+    {
+        EnemyId: 3,
+        StoryId: 11
+    },
+    {
+        EnemyId: 4,
+        StoryId: 12
+    },
+    {
+        EnemyId: 1,
+        StoryId: 8
+    },
+    {
+        EnemyId: 2,
+        StoryId: 5
+    },
+    {
+        EnemyId: 3,
+        StoryId: 4
+    },
+    {
+        EnemyId: 4,
+        StoryId: 2
+    }
+]
+
+const seedMob = () => Mob.bulkCreate(mobData);
+
+module.exports = seedMob;

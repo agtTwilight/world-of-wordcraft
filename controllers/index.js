@@ -6,14 +6,47 @@ const router = express.Router();
 const userRoutes = require('./userController');
 router.use("/api/users",userRoutes);
 
-const achivementRoutes = require('./achivementController');
-router.use("/api/achivement",achivementRoutes);
+const achivementRoutes = require('./achievementController');
+router.use("/api/achievements",achivementRoutes);
 
 const commentRoutes = require('./commentController');
-router.use("/api/comment",commentRoutes);
+router.use("/api/comments",commentRoutes);
 
-// TODO: The frontEndRoutes below is what Joe used for handlebars. When we are ready to implement that code we can uncomment this section!
-// const frontEndRoutes = require('./frontEndController');
-// router.use("/",frontEndRoutes);
+// const groupRoutes = require('./groupController');
+// router.use("/api/groups",groupRoutes);
+
+const frontEndRoutes = require('./frontEndController');
+router.use("/",frontEndRoutes);
+
+//Gameside Routes
+const enemyRoutes = require('./enemyController');
+router.use("/api/enemies",enemyRoutes);
+
+const characterRoutes = require('./characterController');
+router.use("/api/characters",characterRoutes);
+
+const itemRoutes = require('./itemController');
+router.use("/api/items",itemRoutes);
+
+const inventoryRoutes = require('./inventoryController');
+router.use("/api/inventories",inventoryRoutes);
+
+const inventoryItemsRoutes = require('./inventoryItemController');
+router.use("/api/inventoryItems",inventoryItemsRoutes);
+
+const spellbookRoutes = require('./spellbookController');
+router.use("/api/spellbooks",spellbookRoutes);
+
+const spellbookSpellsRoutes = require('./spellbookSpellsController');
+router.use("/api/spellbookSpells",spellbookSpellsRoutes);
+
+const spellRoutes = require('./spellController');
+router.use("/api/spells",spellRoutes);
+
+const storyRoutes = require('./storyController');
+router.use("/api/stories",storyRoutes);
+
+const forgeRoutes = require('./forgeController');
+router.use("/api/forge",forgeRoutes);
 
 module.exports = router;

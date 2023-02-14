@@ -1,0 +1,163 @@
+:root {
+    --am-font-color: azure;
+    --am-header-color: #141d1cf1;
+    --hud-background-color: #1c2625c7;
+}
+
+body {
+    background-image: url('../assets/game-bg/pathway2.png');
+    background-size: cover;
+    background-position-y: center;
+}
+
+.am-btn {
+    font-size: small;
+    color: var(--am-font-color);
+    width: 100%;
+    height: 16.6%;
+    background-color: var(--hud-background-color);
+    border: none;
+    border-top: solid #f0ffff3d 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.word-bench {
+    width: 100%;
+    height: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.pause-menu-btn {
+    width: 75%;
+    height: 8%;
+    margin: 2%;
+    background-color: green;
+    border: solid black 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.character-detail {
+    font-size: 3vh;
+}
+
+.spawn-point {
+    width: 20vw;
+    height: 20vw;
+    position: absolute;
+}
+
+/* mrgings on this need to be fixed */
+#background {
+    width: 100%;
+    height: 90vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#game-container {
+    /* add minimum height and width */
+    width: 80vw;
+    height: 85vh;
+    overflow: hidden;
+    border-radius: 30px;
+    border: solid var(--am-header-color) 5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+}
+
+#spawn-1 {
+    top: 10vh;
+}
+
+#spawn-2 {
+    top: 10vh;
+    right: 10vw;
+}
+
+#spawn-3 {
+    top: 10vh;
+    left: 10vw;
+}
+
+#hud {
+    padding: 0;
+    margin: 0;
+    height: fit-content;
+    width: 87%;
+    position: relative;
+}
+
+#action-menu {
+    padding: 0;
+    margin: 0;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#am-header {
+    font-size: small;
+    color: azure;
+    height: 17%;
+    background-color: var(--am-header-color) ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#story-box {
+    /* border-left: solid #f0ffff3d 2px; */
+    background-color: var(--hud-background-color);
+    position: relative;
+}
+
+#data-storage {
+    font-size: small;
+    color: var(--am-font-color);
+}
+
+#active-spell {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#pause-menu {
+    background-color: grey;
+    height: 100%;
+    width: 18vw;
+    border: solid black 1px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    position: absolute;
+    top: 0;
+    left: -19vw;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#character-details-header {
+    margin: 0;
+}
+
+#character-details {
+    background-color: aquamarine;
+    width: 80%;
+    height: 64%;
+    margin: 2%;
+    border: solid black 1px;
+}
