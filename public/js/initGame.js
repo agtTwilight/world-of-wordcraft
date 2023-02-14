@@ -101,7 +101,7 @@ export class Game {
         } else {
             return this.enemyList;
         }           
-        // fetch(`http://localhost:3000/api/enemies/mob/${currentStory}`)
+        // fetch(`/api/enemies/mob/${currentStory}`)
         //     .then(res =>{
         //         return res.json();
         //     })
