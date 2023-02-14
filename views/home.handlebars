@@ -16,7 +16,8 @@
         </section>
         <section class="home-box col-8 blur nes-container">
                 <section id="home-container" class="row d-flex justify-content-center">
-                        <div class="col-5 align-items-center justify-content-center">
+                        <div class="col-5 align-items-center justify-content-center d-flex flex-column">
+                                <p id="character-name" class="text-center">{{userStats.character_name}}</p>
                                 <img id="character-sprite" src="/assets/character/main-character.png" alt="Your Character!">
                         </div>
                     <div id="character-traits" class="col-5 row d-flex overflow-auto nes-container is-rounded">
@@ -71,9 +72,8 @@
                 </section>
         </section>
                         <div class="d-flex justify-content-center">
-                                <button id="game-btn" type="submit" class="btn btn-secondary nes-btn is-error">Start Your Adventure</button>
+                                <button id="game-btn" class="btn btn-secondary nes-btn is-error">Start Your Adventure</button>
                         </div>
 </section>
 
-{{!-- <script src="/js/login.js"></script> --}}
 <script src="/js/startGame.js"></script>
