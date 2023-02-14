@@ -57,6 +57,7 @@ export class Game {
     async progressStory (ul, btn){
         //add descriptive story to storybox
         this.clearLi();
+        const game = this;
         const li = document.createElement("li");
         li.textContent = this.stories[0].description;
         ul.appendChild(li);
@@ -69,39 +70,48 @@ export class Game {
         const spawn3 = document.querySelector(`#spawn-3`)
         const spawns = [spawn1, spawn2, spawn3];
 
-        if(this.currentEnemies[0] === undefined){
-            await this.getEnemyList([this.stories[0].id]);
-        }
-
-        this.currentEnemies.forEach((enemy, i) => {
-            spawns[i].setAttribute(`style`, `background-image: url('${enemy.sprite}'); background-size: cover;`)
-            enemy.index = i;
-            console.log(enemy)
-        });
-
+        setTimeout(() => {
+            game.currentEnemies.forEach((enemy, i) => {
+                spawns[i].setAttribute(`style`, `background-image: url('${enemy.sprite}'); background-size: cover;`)
+                enemy.index = i;
+                console.log(enemy)
+            });
+    
+        }, 100)
+        
         //update action menu button
         btn.textContent = `Attack`;
         btn.classList.remove(`continue-action`);
         btn.classList.add(`attack-action`);
     }
 
-    getEnemyList(stories){        
+    async getEnemyList(stories){        
         const currentStory = stories[0];
-        
-        fetch(`http://localhost:3000/api/enemies/mob/${currentStory}`)
-            .then(res =>{
-                return res.json();
-            })
-            .then(data => {
-                this.enemyList = data.map((enemy) => {return enemy.EnemyId});
+        const enemiesRaw = await fetch(`http://localhost:3000/api/enemies/mob/${currentStory}`);
+        const enemies = await enemiesRaw.json();
+
+        this.enemyList = enemies.map((enemy) => {return enemy.EnemyId});
                 
-                if(this.currentEnemies[0] === undefined){
-                    this.generateMob(this.enemyList)
-                    //testing loot with only gold
-                } else {
-                    return this.enemyList;
-                }           
-            });
+        if(this.currentEnemies[0] === undefined){
+            this.generateMob(this.enemyList)
+            //testing loot with only gold
+        } else {
+            return this.enemyList;
+        }           
+        // fetch(`http://localhost:3000/api/enemies/mob/${currentStory}`)
+        //     .then(res =>{
+        //         return res.json();
+        //     })
+        //     .then(data => {
+        //         this.enemyList = data.map((enemy) => {return enemy.EnemyId});
+                
+        //         if(this.currentEnemies[0] === undefined){
+        //             this.generateMob(this.enemyList)
+        //             //testing loot with only gold
+        //         } else {
+        //             return this.enemyList;
+        //         }           
+        //     });
     }
 
     generateMob (enemies){
