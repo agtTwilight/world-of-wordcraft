@@ -77,7 +77,6 @@
 .tavern {
         width: 100vw;
         height: 100vh;
-        border: solid black 1px;
         background-image:url("../assets/pixel-art-tavern-test.png");
         background-size: 110% 110%;
         padding-top:2%;
@@ -95,13 +94,6 @@ ul {
 
 .input-box {
         height: 85%;
-        border-radius: 30px;
-        margin: 20px;
-        padding-top: 10%;
-}
-.input-box {
-        height: 85%;
-        border-radius: 30px;
         margin: 20px;
         padding-top: 10%;
 }
