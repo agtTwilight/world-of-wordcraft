@@ -77,7 +77,11 @@ hud.addEventListener(`click`, function(e) {
     //Progress story text
     if(continueAct) {
         gameController.progressStory(dataStorage, actionMenuBtn1);
-
+    } else if(spellbookAct) {
+        playerCharacter.storyboxMode = `spellbook`;
+        playerCharacter.displaySpells(dataStorage);
+    } else if(inventoryAct) {
+        playerCharacter.displayInventory(dataStorage);
     //Combat Events
     } else if(attackAct) {
 
