@@ -58,7 +58,7 @@ app.get("/sessions", (req, res) => {
 });
 
 // seed the db
-seedAll()
+// seedAll()
 
 // syncs our data base
 sequelize.sync({ force: false }).then(function () {
