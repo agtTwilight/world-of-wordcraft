@@ -168,3 +168,17 @@ const resetButtons = () => {
     actionMenuBtn4.textContent = `Forge`;
     actionMenuBtn4.classList.add(`forge-action`);
 }
+
+// Save and exit
+saveBtn.addEventListener("click", async function(){
+    await playerCharacter.gameOver()
+})
+
+saveExitBtn.addEventListener("click", async function(){
+    await playerCharacter.gameOver();
+    location.href="/"
+})
+
+exitBtn.addEventListener("click", function(){
+    location.href="/"
+})
