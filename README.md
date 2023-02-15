@@ -30,6 +30,9 @@ Lukas Macmillen - https://github.com/agtTwilight<br>
 Tyler Brown - https://github.com/OneDeadFox<br>
 Jason Nguyen - https://github.com/jhnwoo-dev<br><br>
 
+String-Similarity NPM Package: <br>
+https://www.npmjs.com/package/string-similarity <br><br>
+
 Sprite Assets:<br>
 https://pimen.itch.io/fantasy-skeleton-enemies<br>
 https://luizmelo.itch.io/monsters-creatures-fantasy<br>
@@ -44,7 +47,7 @@ https://ansimuz.itch.io/bulkhead-walls-environment<br>
 https://admurin.itch.io/parallax-backgrounds-plains<br>
 MidJourney AI<br><br>
 
-CSS Frameworks:
+CSS Frameworks:<br>
 https://github.com/nostalgic-css/NES.css<br>
 https://getbootstrap.com/docs/3.4/<br><br>
 
