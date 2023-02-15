@@ -63,7 +63,8 @@ export class Game {
         ul.appendChild(li);
         
         const containerEl = document.querySelector(`#game-container`);
-        containerEl.setAttribute(`style`, `    background-image: url('../assets/game-bg/${this.stories[0]["tag"].toLowerCase()}.png'); background-size: cover;     background-position-y: bottom;`)
+    containerEl.setAttribute(`style`, `background-image: url('../assets/game-bg/${this.stories[0]["tag"].toLowerCase()}.png'); background-size: cover; background-position-y: bottom; border:solid var(--am-header-color) 5px;`)
+        document.querySelector("#body").setAttribute("style", "backdrop-filter: blur(10px); transition:3s")
 
         const spawn1 = document.querySelector(`#spawn-1`)
         const spawn2 = document.querySelector(`#spawn-2`)

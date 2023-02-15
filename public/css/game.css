@@ -69,7 +69,6 @@ body {
     height: 85vh;
     overflow: hidden;
     border-radius: 30px;
-    border: solid var(--am-header-color) 5px;
     position: relative;
     display: flex;
     align-items: center;
