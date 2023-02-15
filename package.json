@@ -28,6 +28,8 @@
     "express-session": "^1.17.3",
     "mysql2": "^3.1.1",
     "nes.css": "^2.3.0",
+    "rhyme-detector": "^1.1.1",
+    "rhyming-part": "^1.1.0",
     "sequelize": "^6.28.0"
   }
 }

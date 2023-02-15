@@ -1,3 +1,4 @@
+
 // create character class
 export class Character {
     constructor(obj) {
@@ -304,29 +305,54 @@ export class Character {
             const spellname = input.value;
             let spellString = textArea.value;
             let matchedWords = [];
+            const sentenceBreak = spellString.split(".");
+            sentenceBreak.pop();
             spellString = spellString.toLowerCase();
             spellString = spellString.replace(/[^a-zA-Z ]/g, " ")
             let spellWords = spellString.split(` `);
             spellWords = spellWords.filter(index => index != ``);
             let powerLevel = 1;
-            console.log(spellWords);
 
             magicWords.forEach(word => {
-
                 if (spellWords.indexOf(word.keyword) != -1) {
                     powerLevel += word.power_points;
                     matchedWords.push(word.keyword);
-                    console.log(word.keyword);
-                    console.log(powerLevel);
                 }
-            })
+            });
+            console.log(`power level` + powerLevel);
 
+
+            //set up rhyme test
+            const lastWords = [];
+            let bestMatch = 0;
+            for (let i = 0; i < sentenceBreak.length; i++) {
+                lastWords.push(sentenceBreak[i].match(/[a-zA-Z]+?(?=\s*?[^\w]*?$)/));
+                lastWords[i] = lastWords[i][0];
+                console.log(lastWords);
+            }
+
+            for (let i = 0; i < lastWords.length; i++) {
+                for (let k = i + 1; k < lastWords.length; k++) {
+                    if (lastWords[i] != lastWords[k]) {
+                        const similarity = stringSimilarity.compareTwoStrings(lastWords[i], lastWords[k]);
+                        
+                        //find the best match in provide spell string
+                        if(similarity > bestMatch) {
+                            bestMatch = similarity;
+                        }
+                    }
+                }
+            }
+
+            powerLevel = Math.round(powerLevel * (bestMatch + 1));
+
+
+            //actually make the spell
             character.createSpell(true, spellname, type, magicWords, matchedWords, powerLevel, 1, 3, 0, 1, 0);
 
             character.clearLi();
             nameLi.textContent = `You created the spell ${spellname}`;
             ul.appendChild(nameLi);
-
             backBtn.classList.remove(`forge-action`);
             backBtn.classList.add(`continue-action`);
             backBtn.textContent = `Proceed Onward`;
@@ -344,7 +370,7 @@ export class Character {
 
     createSpell(is_new, spell_name, magic_type, magic_words, matched_words, power, target, magic_cost, use, level, char_limit) {
         // construct new spell obj
-        this.Spellbook.Spells.push({ is_new, spell_name, magic_type, magic_words, matched_words, power, target, magic_cost, use, level, char_limit })
+        this.Spellbook.Spells.push({ is_new, spell_name, magic_type, magic_words, matched_words, power, target, magic_cost, use, level, char_limit });
     }
 
     updateSpell(is_updated, spell_name, magic_type, magic_words, matched_words, power, target, magic_cost, use, level, char_limit) {
