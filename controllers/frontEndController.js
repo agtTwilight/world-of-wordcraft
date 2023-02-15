@@ -2,24 +2,13 @@ const express = require("express");
 const router = express.Router();
 const { User, Character, Achievement } = require("../models");
 
-// TODO: once home & login .handlebars are made, 1. check if user is logged in (if so, res.render home w/ appropriate data) else, res.render login w/ appropriate data
-router.get("/", (req, res) => {
+router.get("/login", (req,res) => {
+    req.session.destroy();
     res.render("login")
-    // User.findByPk(1, {
-    //     include: [Achievement],
-    // }).then((userData) => {
-    //     const hbsInfo = userData.toJSON();
-    //     console.log(hbsInfo.Achievements[0].text);
-    //     res.render("login", {
-    //         userAchievements: hbsInfo.Achievements[0],
-    //     });
-    // }).catch(err => {
-    //     console.log(err);
-    //     res.status(500).json({ msg: "an error occured", err })
-    // });
-});
+})
 
 router.get("/signup", (req, res) => {
+    // TODO add this back in once we are ready to implement the achievement system
     // User.findByPk(1, {
     //     include: [Achievement],
     // }).then((userData) => {
@@ -35,7 +24,7 @@ router.get("/signup", (req, res) => {
     res.render("signup")
 });
 
-router.get("/home", (req, res) => {
+router.get("/", (req, res) => {
     if (!req.session.userId) {
         return res.render("login")
     }

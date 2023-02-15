@@ -14,7 +14,7 @@ document.querySelector("#login-form").addEventListener("submit",e=>{
             }
         }).then(res=>{
             if(res.ok){
-               location.href="/home"
+               location.href="/"
             } else {
                 location.href="/signup"
             }

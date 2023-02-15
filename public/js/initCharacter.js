@@ -385,17 +385,23 @@ export class Character {
         // spells
         for (let i = 0; i < spells.length; i++) {
             if (spells[i].is_new) {
-                await fetch("/api/spells/", {
+                //TODO REMOVE THESE WHEN WE HAVE TYLER's FUNCTIONS
+                spells[i].magic_words = "string"
+                spells[i].matched_words = 1
+
+                const rawData = await fetch("/api/spells/", {
                     method: "POST",
                     body: JSON.stringify(spells[i]),
                     headers: {
                         "Content-Type": "application/json"
-                    }
+                    },
                 })
+                
+                const newSpell = await rawData.json();
 
                 await fetch("/api/spellbookSpells/", {
                     method: "POST",
-                    body: JSON.stringify({ "SpellsId": spells[i]["id"], "SpellbookId": this.Spellbook.id }),
+                    body: JSON.stringify({ "SpellId": newSpell["id"], "SpellbookId": this.Spellbook.id }),
                     headers: {
                         "Content-Type": "application/json"
                     }
@@ -412,7 +418,7 @@ export class Character {
         // items
         for (let i = 0; i < items.length; i++) {
             if (items[i].is_new) {
-                await fetch("/api/items/", {
+                const rawData = await fetch("/api/items/", {
                     method: "POST",
                     body: JSON.stringify(items[i]),
                     headers: {
@@ -420,9 +426,11 @@ export class Character {
                     }
                 })
 
+                const newItem = await rawData.json();
+
                 await fetch("/api/inventoryItems/", {
                     method: "POST",
-                    body: JSON.stringify({ "ItemId": items[i]["id"], "InventoryId": this.Inventory.id }),
+                    body: JSON.stringify({ "ItemId": newItem.id, "InventoryId": this.Inventory.id }),
                     headers: {
                         "Content-Type": "application/json"
                     }
