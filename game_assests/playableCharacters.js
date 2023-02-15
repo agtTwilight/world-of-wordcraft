@@ -19,7 +19,7 @@ const createNewCharacter = async (character_name, userId) => {
         }
 
         // adds new character to db connected to current user
-        const rawData = await fetch("http://localhost:3000/api/characters/", {
+        const rawData = await fetch("/api/characters/", {
                 method:"POST",
                 body: JSON.stringify(characterObj),
                 headers:{
@@ -29,7 +29,7 @@ const createNewCharacter = async (character_name, userId) => {
         const dbCharacter = await rawData.json()
 
         // creates starting inventory, connected to new character
-        const createStartingInventory = await fetch("http://localhost:3000/api/inventories/", {
+        const createStartingInventory = await fetch("/api/inventories/", {
                 method:"POST",
                 body: JSON.stringify({"CharacterId":dbCharacter.id}),
                 headers:{
@@ -41,7 +41,7 @@ const createNewCharacter = async (character_name, userId) => {
 
         // add items to starting inventory
         // TODO: make a for loop that adds all items we want
-        const fillStartingInventory = await fetch("http://localhost:3000/api/inventoryItems", {
+        const fillStartingInventory = await fetch("/api/inventoryItems", {
                 method:"POST",
                 body: JSON.stringify(itemJunction),
                 headers:{
@@ -50,7 +50,7 @@ const createNewCharacter = async (character_name, userId) => {
         })
 
         // add spellbook to new character
-        const createStartingSpellbook = await fetch("http://localhost:3000/api/spellbooks", {
+        const createStartingSpellbook = await fetch("/api/spellbooks", {
                 method:"POST",
                 body: JSON.stringify({"CharacterId":dbCharacter.id}),
                 headers:{
@@ -62,7 +62,7 @@ const createNewCharacter = async (character_name, userId) => {
 
         // add spells to spellbook
         // TODO: make a for loop to add all spells
-        const fillStartingSpellbook = await fetch("http://localhost:3000/api/spellbookSpells", {
+        const fillStartingSpellbook = await fetch("/api/spellbookSpells", {
                 method:"POST",
                 body: JSON.stringify(spellJunction),
                 headers:{
@@ -77,7 +77,7 @@ const test = async () => {
                 "password":"password"
             }
     
-            const rawUserData = await fetch("http://localhost:3000/api/users/",{
+            const rawUserData = await fetch("/api/users/",{
                 method:"POST",
                 body:JSON.stringify(signupObj),
                 headers:{

@@ -93,5 +93,5 @@ document.querySelector("#signup-form").addEventListener("submit", async e=>{
 })
 
 function goHome() {
-    location.href="/home"
+    location.href="/"
 }

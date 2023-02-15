@@ -1,3 +1,4 @@
+
 // create character class
 export class Character {
     constructor(obj) {
@@ -174,7 +175,7 @@ export class Character {
     }
 
     async getKeywords(type) {
-        const keywordsData = await fetch(`http://localhost:3000/api/forge/type/${type}`);
+        const keywordsData = await fetch(`/api/forge/type/${type}`);
 
         //eventually we'll divide the array based on frequency value and type, that way we can pull a specific amout of each type and a porpotion of them based on thier frequency.
         const keywords = await keywordsData.json();
@@ -304,29 +305,54 @@ export class Character {
             const spellname = input.value;
             let spellString = textArea.value;
             let matchedWords = [];
+            const sentenceBreak = spellString.split(".");
+            sentenceBreak.pop();
             spellString = spellString.toLowerCase();
             spellString = spellString.replace(/[^a-zA-Z ]/g, " ")
             let spellWords = spellString.split(` `);
             spellWords = spellWords.filter(index => index != ``);
             let powerLevel = 1;
-            console.log(spellWords);
 
             magicWords.forEach(word => {
-
                 if (spellWords.indexOf(word.keyword) != -1) {
                     powerLevel += word.power_points;
                     matchedWords.push(word.keyword);
-                    console.log(word.keyword);
-                    console.log(powerLevel);
                 }
-            })
+            });
+            console.log(`power level` + powerLevel);
 
+
+            //set up rhyme test
+            const lastWords = [];
+            let bestMatch = 0;
+            for (let i = 0; i < sentenceBreak.length; i++) {
+                lastWords.push(sentenceBreak[i].match(/[a-zA-Z]+?(?=\s*?[^\w]*?$)/));
+                lastWords[i] = lastWords[i][0];
+                console.log(lastWords);
+            }
+
+            for (let i = 0; i < lastWords.length; i++) {
+                for (let k = i + 1; k < lastWords.length; k++) {
+                    if (lastWords[i] != lastWords[k]) {
+                        const similarity = stringSimilarity.compareTwoStrings(lastWords[i], lastWords[k]);
+                        
+                        //find the best match in provide spell string
+                        if(similarity > bestMatch) {
+                            bestMatch = similarity;
+                        }
+                    }
+                }
+            }
+
+            powerLevel = Math.round(powerLevel * (bestMatch + 1));
+
+
+            //actually make the spell
             character.createSpell(true, spellname, type, magicWords, matchedWords, powerLevel, 1, 3, 0, 1, 0);
 
             character.clearLi();
             nameLi.textContent = `You created the spell ${spellname}`;
             ul.appendChild(nameLi);
-
             backBtn.classList.remove(`forge-action`);
             backBtn.classList.add(`continue-action`);
             backBtn.textContent = `Proceed Onward`;
@@ -344,7 +370,7 @@ export class Character {
 
     createSpell(is_new, spell_name, magic_type, magic_words, matched_words, power, target, magic_cost, use, level, char_limit) {
         // construct new spell obj
-        this.Spellbook.Spells.push({ is_new, spell_name, magic_type, magic_words, matched_words, power, target, magic_cost, use, level, char_limit })
+        this.Spellbook.Spells.push({ is_new, spell_name, magic_type, magic_words, matched_words, power, target, magic_cost, use, level, char_limit });
     }
 
     updateSpell(is_updated, spell_name, magic_type, magic_words, matched_words, power, target, magic_cost, use, level, char_limit) {
@@ -385,17 +411,23 @@ export class Character {
         // spells
         for (let i = 0; i < spells.length; i++) {
             if (spells[i].is_new) {
-                await fetch("/api/spells/", {
+                //TODO REMOVE THESE WHEN WE HAVE TYLER's FUNCTIONS
+                spells[i].magic_words = "string"
+                spells[i].matched_words = 1
+
+                const rawData = await fetch("/api/spells/", {
                     method: "POST",
                     body: JSON.stringify(spells[i]),
                     headers: {
                         "Content-Type": "application/json"
-                    }
+                    },
                 })
+                
+                const newSpell = await rawData.json();
 
                 await fetch("/api/spellbookSpells/", {
                     method: "POST",
-                    body: JSON.stringify({ "SpellsId": spells[i]["id"], "SpellbookId": this.Spellbook.id }),
+                    body: JSON.stringify({ "SpellId": newSpell["id"], "SpellbookId": this.Spellbook.id }),
                     headers: {
                         "Content-Type": "application/json"
                     }
@@ -412,7 +444,7 @@ export class Character {
         // items
         for (let i = 0; i < items.length; i++) {
             if (items[i].is_new) {
-                await fetch("/api/items/", {
+                const rawData = await fetch("/api/items/", {
                     method: "POST",
                     body: JSON.stringify(items[i]),
                     headers: {
@@ -420,9 +452,11 @@ export class Character {
                     }
                 })
 
+                const newItem = await rawData.json();
+
                 await fetch("/api/inventoryItems/", {
                     method: "POST",
-                    body: JSON.stringify({ "ItemId": items[i]["id"], "InventoryId": this.Inventory.id }),
+                    body: JSON.stringify({ "ItemId": newItem.id, "InventoryId": this.Inventory.id }),
                     headers: {
                         "Content-Type": "application/json"
                     }
@@ -470,7 +504,7 @@ export class Character {
 
 // fetch the user api, get the specific character data, return it for use
 export const getCharacterData = async () => {
-    const rawData = await fetch("http://localhost:3000/api/users/1", { method: "GET" })
+    const rawData = await fetch("/api/users/1", { method: "GET" })
     const newData = await rawData.json();
 
     // TODO: make the '0' increment to active character
