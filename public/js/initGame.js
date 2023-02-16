@@ -19,7 +19,7 @@ export class Game {
         this.loot = {
             gold: 0,
             exp: 0,
-            spell_points: 0,
+            spell_point: 0,
             items: []
         };
         this.storyboxMode = `null`;
@@ -130,7 +130,7 @@ export class Game {
             //collect loot for lootScreen
             this.loot.gold += newEnemy.gold;
             this.loot.exp += newEnemy.exp;
-            //this.loot.spell_points += newEnemy.spell_points;
+            this.loot.spell_point += newEnemy.spell_point;
             //this.loot.inventory.push(newEnemy.inventory);
         });
         return this.currentEnemies;
@@ -150,11 +150,16 @@ export class Game {
             li.textContent = `You received ${this.loot.exp} experience points.`;
             ul.appendChild(li);
         }
+        if(this.loot.spell_point > 0) {
+            const li = document.createElement("li");
+            li.textContent = `You received ${this.loot.spell_point}SP.`;
+            ul.appendChild(li);
+        }
         //add spell points
 
         player.gold += this.loot.gold;
         player.exp += this.loot.exp;
-        //player.spell_points += this.loot.spell_points;
+        player.spell_point += this.loot.spell_point;
 
         btn.textContent = `Proceed`;
         btn.classList.remove(`continue-to-loot`);

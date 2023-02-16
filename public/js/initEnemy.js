@@ -3,7 +3,7 @@ export class Enemy {
     //probably need to remove quantity as quantity will be dynamically defined in the mob class upon enemy creation
     constructor(obj
     ) {
-        const{id, enemy_name, race, alignment, sprite, health, attack, magic, resistance, defense, accuracy, luck, consitution, exp, level, gold} = obj;
+        const{id, enemy_name, race, alignment, sprite, health, attack, magic, resistance, defense, accuracy, luck, consitution, exp, level, gold, spell_point} = obj;
         
         this.id = id;
         this.enemy_name = enemy_name;
@@ -21,6 +21,7 @@ export class Enemy {
         this.exp = exp;
         this.level = level;
         this.gold = gold;
+        this.spell_point = spell_point;
         //this.quantity = quantity;
     }
 
