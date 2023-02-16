@@ -156,7 +156,7 @@ export class Game {
         player.exp += this.loot.exp;
         //player.spell_points += this.loot.spell_points;
 
-        btn.textContent = `Proceed Onward`;
+        btn.textContent = `Proceed`;
         btn.classList.remove(`continue-to-loot`);
         btn.classList.add(`continue-action`);
     }

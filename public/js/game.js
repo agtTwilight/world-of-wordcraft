@@ -48,7 +48,7 @@ actionMenuBtn4.classList.add(`forge-action`);
 
 
 
-hud.addEventListener(`click`, function(e) {
+hud.addEventListener(`mousedown`, function(e) {
     //Combat event listeners
     const continueAct = e.target.closest(`.continue-action`);
     const continueToEnemyTurn = e.target.closest(`.continue-to-enemy`);
@@ -117,7 +117,8 @@ hud.addEventListener(`click`, function(e) {
     } else if(forgeType) {
         clearButtons(allActionMenuButtons);
         playerCharacter.setSpellType(dataStorage, actionMenuBtn1, actionMenuBtn2, actionMenuBtn3);
-    }else if(forgeBuild) {}
+    }else if(forgeBuild) {
+    }
 
 })
 
@@ -159,7 +160,7 @@ const clearButtons = (buttons) => {
 
 //basically acts as a main menu function
 const resetButtons = () => {
-    actionMenuBtn1.textContent = `Proceed Onward`;
+    actionMenuBtn1.textContent = `Proceed`;
     actionMenuBtn1.classList.add(`continue-action`);
     actionMenuBtn2.textContent = `SpellBook`;
     actionMenuBtn2.classList.add(`spellbook-action`);
