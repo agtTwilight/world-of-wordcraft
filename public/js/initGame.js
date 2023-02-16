@@ -19,7 +19,7 @@ export class Game {
         this.loot = {
             gold: 0,
             exp: 0,
-            spell_points: 0,
+            spell_point: 0,
             items: []
         };
         this.storyboxMode = `null`;
@@ -61,15 +61,17 @@ export class Game {
         const li = document.createElement("li");
         li.textContent = this.stories[0].description;
         ul.appendChild(li);
-        
+                
         const containerEl = document.querySelector(`#game-container`);
-    containerEl.setAttribute(`style`, `background-image: url('../assets/game-bg/${this.stories[0]["tag"].toLowerCase()}.png'); background-size: cover; background-position-y: bottom; border:solid var(--am-header-color) 5px;`)
+        containerEl.setAttribute(`style`, `background-image: url('../assets/game-bg/${this.stories[0]["tag"].toLowerCase()}.png'); background-size: cover; background-position-y: bottom; border:solid var(--am-header-color) 5px;`)
         document.querySelector("#body").setAttribute("style", "backdrop-filter: blur(10px); transition:3s")
 
         const spawn1 = document.querySelector(`#spawn-1`)
         const spawn2 = document.querySelector(`#spawn-2`)
         const spawn3 = document.querySelector(`#spawn-3`)
         const spawns = [spawn1, spawn2, spawn3];
+
+
 
         if(this.currentEnemies[0] === undefined){
             await this.getEnemyList([this.stories[0].id]);
@@ -91,13 +93,17 @@ export class Game {
 
     async getEnemyList(stories){        
         const currentStory = stories[0];
+
+        //Get enemies specified in mob seed
         const enemiesRaw = await fetch(`/api/enemies/mob/${currentStory}`);
         const enemies = await enemiesRaw.json();
+
+        const enemyQuantity = 
 
         this.enemyList = enemies.map((enemy) => {return enemy.EnemyId});
                 
         if(this.currentEnemies[0] === undefined){
-            this.generateMob(this.enemyList)
+            await this.generateMob(this.enemyList)
             //testing loot with only gold
         } else {
             return this.enemyList;
@@ -118,21 +124,79 @@ export class Game {
         //     });
     }
 
-    generateMob (enemies){
-        enemies.forEach(async (enemy) => {
-            const getEnemy = await fetch(`/api/enemies/${enemy}`);
-            const enemyObj = await getEnemy.json();
-            const newEnemy = new Enemy(enemyObj);
-            console.log(newEnemy);
-            //create in game mob
-            this.currentEnemies.push(newEnemy);
+    async generateMob (enemies){
+        // enemies.forEach(async (enemy) => {
+        //     const getEnemy = await fetch(`/api/enemies/${enemy}`);
+        //     const enemyObj = await getEnemy.json();
+        //     const newEnemy = new Enemy(enemyObj);
+        //     console.log(newEnemy);
+        //     //create in game mob
+        //     this.currentEnemies.push(newEnemy);
 
-            //collect loot for lootScreen
-            this.loot.gold += newEnemy.gold;
-            this.loot.exp += newEnemy.exp;
-            //this.loot.spell_points += newEnemy.spell_points;
-            //this.loot.inventory.push(newEnemy.inventory);
-        });
+        //     //collect loot for lootScreen
+        //     this.loot.gold += newEnemy.gold;
+        //     this.loot.exp += newEnemy.exp;
+        //     this.loot.spell_point += newEnemy.spell_point;
+        //     //this.loot.inventory.push(newEnemy.inventory);
+        // });
+        const game = this;
+        let enemyTag = this.stories[0].enemy_tag;
+        enemyTag = enemyTag.split(`,`);
+        console.log(enemyTag);
+        await enemyTag.forEach(async (enemy, i) => {
+            const enemyQuantity = enemy.match(/\d+/g);
+            const enemyType = enemy.match(/[A-Za-z]+/g).toString();
+            
+            console.log(enemyType);
+            console.log(typeof(enemyType));
+            for (let i = 0; i < enemyQuantity; i++) {
+                let newEnemy;
+                if(enemyType === `G`) {
+                    const getEnemy = await fetch(`/api/enemies/1`);
+                    const enemyObj = await getEnemy.json();
+                    newEnemy = new Enemy(enemyObj);
+                    console.log(newEnemy);
+                    game.currentEnemies.push(newEnemy);
+                    this.loot.gold += newEnemy.gold;
+                    this.loot.exp += newEnemy.exp;
+                    this.loot.spell_point += newEnemy.spell_point;
+                    //this.loot.inventory.push(newEnemy.inventory);
+                } else if(enemyType === `W`) {
+                    const getEnemy = await fetch(`/api/enemies/2`);
+                    const enemyObj = await getEnemy.json();
+                    newEnemy = new Enemy(enemyObj);
+                    console.log(newEnemy);
+                    game.currentEnemies.push(newEnemy);
+                    this.loot.gold += newEnemy.gold;
+                    this.loot.exp += newEnemy.exp;
+                    this.loot.spell_point += newEnemy.spell_point;
+                    //this.loot.inventory.push(newEnemy.inventory);
+                } else if(enemyType === `Sp`) {
+                    const getEnemy = await fetch(`/api/enemies/3`);
+                    const enemyObj = await getEnemy.json();
+                    newEnemy = new Enemy(enemyObj);
+                    console.log(newEnemy);
+                    game.currentEnemies.push(newEnemy);
+                    this.loot.gold += newEnemy.gold;
+                    this.loot.exp += newEnemy.exp;
+                    this.loot.spell_point += newEnemy.spell_point;
+                    //this.loot.inventory.push(newEnemy.inventory);
+                } else if(enemyType === `Sk`) {
+                    const getEnemy = await fetch(`/api/enemies/4`);
+                    const enemyObj = await getEnemy.json();
+                    newEnemy = new Enemy(enemyObj);
+                    console.log(newEnemy);
+                    game.currentEnemies.push(newEnemy);
+                    this.loot.gold += newEnemy.gold;
+                    this.loot.exp += newEnemy.exp;
+                    this.loot.spell_point += newEnemy.spell_point;
+                    //this.loot.inventory.push(newEnemy.inventory);
+                }
+                console.log(`forloop: ` + this.currentEnemies);
+            }
+            console.log(`forEach: ` + this.currentEnemies);
+        })
+        console.log(`Fn(): ` + this.currentEnemies);
         return this.currentEnemies;
     }
 
@@ -150,13 +214,18 @@ export class Game {
             li.textContent = `You received ${this.loot.exp} experience points.`;
             ul.appendChild(li);
         }
+        if(this.loot.spell_point > 0) {
+            const li = document.createElement("li");
+            li.textContent = `You received ${this.loot.spell_point}SP.`;
+            ul.appendChild(li);
+        }
         //add spell points
 
         player.gold += this.loot.gold;
         player.exp += this.loot.exp;
-        //player.spell_points += this.loot.spell_points;
+        player.spell_point += this.loot.spell_point;
 
-        btn.textContent = `Proceed Onward`;
+        btn.textContent = `Proceed`;
         btn.classList.remove(`continue-to-loot`);
         btn.classList.add(`continue-action`);
     }
@@ -298,15 +367,29 @@ export class Game {
                 player.health -= damage;
                 console.log(player.health);
 
+                if(player.health <= 0) {
+                    player.health = 0;
+                }
                 
                 reportHealth.textContent = `Your health is at ${player.health}`;
                 ul.appendChild(reportDamage);
                 ul.appendChild(reportHealth);
             })
 
-            btn.textContent = `Continue`;
-            btn.classList.remove(`continue-to-enemy`);
-            btn.classList.add(`continue-to-main`);
+            if(player.health <= 0) {
+                this.clearLi();
+                this.clearButtons();
+                const gameOverLi = document.createElement(`li`);
+                gameOverLi.textContent = `You have died`;
+                ul.appendChild(gameOverLi)
+                btn.textContent = `Game Over`;
+                btn.classList.remove(`continue-to-enemy`);
+                btn.classList.add(`game-over`);
+            } else {
+                btn.textContent = `Continue`;
+                btn.classList.remove(`continue-to-enemy`);
+                btn.classList.add(`continue-to-main`);
+            }
         }
     }
 
@@ -314,6 +397,14 @@ export class Game {
         const lineItemsToRemove = document.querySelectorAll(`li`);
         lineItemsToRemove.forEach(item => {
             item.remove();
+        });
+    }
+
+    clearButtons = () => {
+        const buttons = document.querySelectorAll(`.am-btn`);
+        buttons.forEach(btn => {
+            btn.setAttribute(`class`, `am-btn`);
+            btn.textContent = ``;
         });
     }
 

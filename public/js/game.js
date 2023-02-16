@@ -9,7 +9,7 @@ const actionMenuBtn3 = document.querySelector(`#am-btn-3`);
 const actionMenuBtn4 = document.querySelector(`#am-btn-4`);
 const allActionMenuButtons = [actionMenuBtn1, actionMenuBtn2, actionMenuBtn3, actionMenuBtn4];
 const dataStorage = document.querySelector("#data-storage")
-
+const li = document.createElement(`li`);
 
 //Pause menu variables
 const pauseBtn = document.querySelector(`.pause-btn`);
@@ -48,7 +48,7 @@ actionMenuBtn4.classList.add(`forge-action`);
 
 
 
-hud.addEventListener(`click`, function(e) {
+hud.addEventListener(`mousedown`, async function(e) {
     //Combat event listeners
     const continueAct = e.target.closest(`.continue-action`);
     const continueToEnemyTurn = e.target.closest(`.continue-to-enemy`);
@@ -65,6 +65,8 @@ hud.addEventListener(`click`, function(e) {
     const forgeBuild =e.target.closest(`.forge-build-btn`);
     const forgeCreate = e.target.closest(`.forge-create-btn`);
     const forgeUpgrade = e.target.closest(`.forge-upgrade-btn`);
+
+    const gameOver = e.target.closest(`.game-over`);
 
 
     const inventoryAct = e.target.closest(`.inventory-action`);
@@ -116,8 +118,19 @@ hud.addEventListener(`click`, function(e) {
         resetButtons();
     } else if(forgeType) {
         clearButtons(allActionMenuButtons);
+        if(playerCharacter.spell_point >= 20) {
         playerCharacter.setSpellType(dataStorage, actionMenuBtn1, actionMenuBtn2, actionMenuBtn3);
-    }else if(forgeBuild) {}
+        } else {
+            playerCharacter.clearLi();
+            actionMenuBtn1.textContent = `Back`;
+            actionMenuBtn1.classList.add(`forge-action`)
+            li.textContent = `You don't have enough SP to create a spell`
+            dataStorage.appendChild(li);
+        }
+    }else if(gameOver) {
+        await playerCharacter.gameOver(false);
+        location.href="/";
+    }
 
 })
 
@@ -159,7 +172,7 @@ const clearButtons = (buttons) => {
 
 //basically acts as a main menu function
 const resetButtons = () => {
-    actionMenuBtn1.textContent = `Proceed Onward`;
+    actionMenuBtn1.textContent = `Combat`;
     actionMenuBtn1.classList.add(`continue-action`);
     actionMenuBtn2.textContent = `SpellBook`;
     actionMenuBtn2.classList.add(`spellbook-action`);

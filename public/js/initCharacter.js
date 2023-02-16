@@ -103,11 +103,8 @@ export class Character {
     }
 
     displayInventory(ul, pc) {
-        if (ul.children.length > 0) {
-            for (let i = 0; i < ul.children.length; i++) {
-                ul.removeChild(ul.children[i])
-            }
-        }
+        this.clearLi();
+
         for (const item in this.Inventory.Items) {
             console.log(this.Inventory.Items[item])
         }
@@ -211,9 +208,9 @@ export class Character {
         backBtn.classList.add(`forge-back-btn`);
         backBtn.textContent = `Back`;
         createBtn.classList.add(`forge-type-btn`);
-        createBtn.textContent = `Create Spell`;
+        createBtn.textContent = `Create 50SP`;
         upgradeBtn.classList.add(`forge-upgrade-btn`);
-        upgradeBtn.textContent = `Upgrade Spell`;
+        upgradeBtn.textContent = `Upgrade 200SP`;
     }
 
     //need to clear buttons of previous classes
@@ -261,7 +258,7 @@ export class Character {
         backBtn.classList.add(`forge-action`);
         backBtn.textContent = `Back`;
         createBtn.classList.add(`forge-build-btn`);
-        createBtn.textContent = `Forge Spell`;
+        createBtn.textContent = `Create`;
         spellbookBtn.classList.add(`spellbook-action`)
         spellbookBtn.textContent = `Spellbook`;
     }
@@ -270,7 +267,7 @@ export class Character {
     async buildSpell(ul, backBtn, createBtn, callbackBtn, type) {
         this.clearLi();
         this.clearButtons([backBtn, createBtn]);
-
+        this.returnFromForge = true;
 
         const magicWords = await this.getKeywords(type);
 
@@ -297,11 +294,12 @@ export class Character {
 
         backBtn.textContent = `Back`;
         backBtn.classList.add(`forge-action`);
-        createBtn.textContent = `Forge Spell`;
+        createBtn.textContent = `Create`;
         createBtn.classList.add(`forge-build-btn`);
 
         //set new classes on btns
-        createBtn.addEventListener(`click`, function () {
+        createBtn.addEventListener(`mouseup`, function () {
+            character.spell_point -= 50;
             const spellname = input.value;
             let spellString = textArea.value;
             let matchedWords = [];
@@ -343,19 +341,19 @@ export class Character {
                     }
                 }
             }
-
+            
             powerLevel = Math.round(powerLevel * (bestMatch + 1));
-
+            console.log(`powerlevel after bonuses` + powerLevel);
 
             //actually make the spell
             character.createSpell(true, spellname, type, magicWords, matchedWords, powerLevel, 1, 3, 0, 1, 0);
 
             character.clearLi();
-            nameLi.textContent = `You created the spell ${spellname}`;
+            nameLi.textContent = `You created the spell ${spellname} it's power level is ${powerLevel}. It has rhyme multiplier of ${ Math.round((bestMatch + 1))} and can deal up to ${powerLevel * 10}pts of damage!`;
             ul.appendChild(nameLi);
             backBtn.classList.remove(`forge-action`);
             backBtn.classList.add(`continue-action`);
-            backBtn.textContent = `Proceed Onward`;
+            backBtn.textContent = `Proceed`;
             createBtn.classList.remove(`forge-build-btn`);
             createBtn.classList.add(`spellbook-action`);
             createBtn.textContent = `Spellbook`;
@@ -491,7 +489,7 @@ export class Character {
     }
 
     // resetButtons = (btn1, btn2, btn3, btn4,) => {
-    //     btn1.textContent = `Proceed Onward`;
+    //     btn1.textContent = `Proceed`;
     //     btn1.classList.add(`continue-action`);
     //     btn2.textContent = `SpellBook`;
     //     btn2.classList.add(`spellbook-action`);
