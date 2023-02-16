@@ -208,9 +208,9 @@ export class Character {
         backBtn.classList.add(`forge-back-btn`);
         backBtn.textContent = `Back`;
         createBtn.classList.add(`forge-type-btn`);
-        createBtn.textContent = `Create`;
+        createBtn.textContent = `Create 50SP`;
         upgradeBtn.classList.add(`forge-upgrade-btn`);
-        upgradeBtn.textContent = `Upgrade`;
+        upgradeBtn.textContent = `Upgrade 200SP`;
     }
 
     //need to clear buttons of previous classes
@@ -299,6 +299,7 @@ export class Character {
 
         //set new classes on btns
         createBtn.addEventListener(`mouseup`, function () {
+            character.spell_point -= 50;
             const spellname = input.value;
             let spellString = textArea.value;
             let matchedWords = [];

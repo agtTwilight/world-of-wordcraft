@@ -9,7 +9,7 @@ const actionMenuBtn3 = document.querySelector(`#am-btn-3`);
 const actionMenuBtn4 = document.querySelector(`#am-btn-4`);
 const allActionMenuButtons = [actionMenuBtn1, actionMenuBtn2, actionMenuBtn3, actionMenuBtn4];
 const dataStorage = document.querySelector("#data-storage")
-
+const li = document.createElement(`li`);
 
 //Pause menu variables
 const pauseBtn = document.querySelector(`.pause-btn`);
@@ -116,7 +116,15 @@ hud.addEventListener(`mousedown`, function(e) {
         resetButtons();
     } else if(forgeType) {
         clearButtons(allActionMenuButtons);
+        if(playerCharacter.spell_point >= 20) {
         playerCharacter.setSpellType(dataStorage, actionMenuBtn1, actionMenuBtn2, actionMenuBtn3);
+        } else {
+            playerCharacter.clearLi();
+            actionMenuBtn1.textContent = `Back`;
+            actionMenuBtn1.classList.add(`forge-action`)
+            li.textContent = `You don't have enough SP to create a spell`
+            dataStorage.appendChild(li);
+        }
     }else if(forgeBuild) {
     }
 
@@ -160,7 +168,7 @@ const clearButtons = (buttons) => {
 
 //basically acts as a main menu function
 const resetButtons = () => {
-    actionMenuBtn1.textContent = `Proceed`;
+    actionMenuBtn1.textContent = `Combat`;
     actionMenuBtn1.classList.add(`continue-action`);
     actionMenuBtn2.textContent = `SpellBook`;
     actionMenuBtn2.classList.add(`spellbook-action`);
