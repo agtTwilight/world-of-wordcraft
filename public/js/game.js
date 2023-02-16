@@ -48,7 +48,7 @@ actionMenuBtn4.classList.add(`forge-action`);
 
 
 
-hud.addEventListener(`mousedown`, function(e) {
+hud.addEventListener(`mousedown`, async function(e) {
     //Combat event listeners
     const continueAct = e.target.closest(`.continue-action`);
     const continueToEnemyTurn = e.target.closest(`.continue-to-enemy`);
@@ -65,6 +65,8 @@ hud.addEventListener(`mousedown`, function(e) {
     const forgeBuild =e.target.closest(`.forge-build-btn`);
     const forgeCreate = e.target.closest(`.forge-create-btn`);
     const forgeUpgrade = e.target.closest(`.forge-upgrade-btn`);
+
+    const gameOver = e.target.closest(`.game-over`);
 
 
     const inventoryAct = e.target.closest(`.inventory-action`);
@@ -125,7 +127,9 @@ hud.addEventListener(`mousedown`, function(e) {
             li.textContent = `You don't have enough SP to create a spell`
             dataStorage.appendChild(li);
         }
-    }else if(forgeBuild) {
+    }else if(gameOver) {
+        await playerCharacter.gameOver(false);
+        location.href="/";
     }
 
 })

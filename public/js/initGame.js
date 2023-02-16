@@ -298,15 +298,29 @@ export class Game {
                 player.health -= damage;
                 console.log(player.health);
 
+                if(player.health <= 0) {
+                    player.health = 0;
+                }
                 
                 reportHealth.textContent = `Your health is at ${player.health}`;
                 ul.appendChild(reportDamage);
                 ul.appendChild(reportHealth);
             })
 
-            btn.textContent = `Continue`;
-            btn.classList.remove(`continue-to-enemy`);
-            btn.classList.add(`continue-to-main`);
+            if(player.health <= 0) {
+                this.clearLi();
+                this.clearButtons();
+                const gameOverLi = document.createElement(`li`);
+                gameOverLi.textContent = `You have died`;
+                ul.appendChild(gameOverLi)
+                btn.textContent = `Game Over`;
+                btn.classList.remove(`continue-to-enemy`);
+                btn.classList.add(`game-over`);
+            } else {
+                btn.textContent = `Continue`;
+                btn.classList.remove(`continue-to-enemy`);
+                btn.classList.add(`continue-to-main`);
+            }
         }
     }
 
@@ -314,6 +328,14 @@ export class Game {
         const lineItemsToRemove = document.querySelectorAll(`li`);
         lineItemsToRemove.forEach(item => {
             item.remove();
+        });
+    }
+
+    clearButtons = () => {
+        const buttons = document.querySelectorAll(`.am-btn`);
+        buttons.forEach(btn => {
+            btn.setAttribute(`class`, `am-btn`);
+            btn.textContent = ``;
         });
     }
 
