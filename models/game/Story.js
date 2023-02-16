@@ -17,6 +17,10 @@ Story.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        enemy_tag: {
+            type: DataTypes.STRING,
+            //allowNull: false,
+        },
         difficulty: {
             type: DataTypes.INTEGER,
             allowNull: false,
