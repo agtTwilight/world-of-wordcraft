@@ -66,6 +66,10 @@ Enemy.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        spell_point: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         quantity: {
             type: DataTypes.INTEGER,
             allowNull: false,

@@ -14,7 +14,7 @@ class Game {
         this.loot = {
             gold: 0,
             exp: 0,
-            spell_points: 0,
+            spell_point: 0,
             items: []
         };
     }
@@ -74,7 +74,7 @@ class Game {
             //collect loot for lootScreen
             this.loot.gold += newEnemy.gold;
             this.loot.exp += newEnemy.exp;
-            //this.loot.spell_points += newEnemy.spell_points;
+            //this.loot.spell_point += newEnemy.spell_point;
             //this.loot.inventory.push(newEnemy.inventory);
             //console.log(this.loot);
         });
@@ -88,7 +88,7 @@ class Game {
         console.log(this.loot);
         player.gold += this.loot.gold;
         player.exp += this.loot.exp;
-        //player.spell_points += this.loot.spell_points;
+        //player.spell_point += this.loot.spell_point;
         console.log(player.gold + ` ` + player.exp);
     }
 

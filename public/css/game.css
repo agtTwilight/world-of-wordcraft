@@ -19,6 +19,7 @@ body {
     border: none;
     border-top: solid #f0ffff3d 2px;
     display: flex;
+    text-align: center;
     align-items: center;
     justify-content: center;
     text-align: center;
